@@ -1,0 +1,27 @@
+---------------------------------------------------------------
+Storing Hierarchical Data in a Database using Left&Right method
+---------------------------------------------------------------
+
+use a tree as loaded/stored object hiding implementation 
+
+- TreeNode public class and methods
+- Test with Mock DAO layer
+
+TODO: 
+	- implements JPA and NOSQL dao layer
+	- make NodeContainer a built-in class (hide implementation)
+	
+
+DAO TIPS:
+	retrieve a (sub)tree:
+	SELECT * FROM tree WHERE lft BETWEEN 2 AND 11 ORDER BY lft ASC;
+	
+	path to a node:
+	SELECT title FROM tree WHERE lft < 4 AND rgt > 5 ORDER BY lft ASC;
+	
+	descendants count:
+	descendants = (right - left - 1) / 2
+	
+References:
+----------
+http://www.sitepoint.com/hierarchical-data-database/
