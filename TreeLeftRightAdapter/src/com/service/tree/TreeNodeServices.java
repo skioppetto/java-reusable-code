@@ -5,12 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
- class TreeNodeServices<Y extends NodeContainer<X>, X extends AbstractNode> {
-	private INodeContainerFactory<Y> factory;
-
-	public TreeNodeServices(INodeContainerFactory<Y> factory) {
-		this.factory = factory;
-	}
+class TreeNodeServices<X extends AbstractNode> {
 
 	public X getNodeTree(List<? extends NodeContainer<X>> nodes) {
 		Stack<NodeContainer<X>> stack = new Stack<NodeContainer<X>>();
@@ -39,10 +34,11 @@ import java.util.Stack;
 		return stack.pop().getNode();
 	}
 
-	public List<Y> getNodeContainerList(X node, final int startLeft) {
+	public List<NodeContainer<X>> getNodeContainerList(X node,
+			final int startLeft) {
 		NodeContainerVisitor visitor = new NodeContainerVisitor();
-		final List<Y> toSave = new ArrayList<Y>();
-		final Stack<Y> nodeStack = new Stack<Y>();
+		final List<NodeContainer<X>> toSave = new ArrayList<NodeContainer<X>>();
+		final Stack<NodeContainer<X>> nodeStack = new Stack<NodeContainer<X>>();
 		visitor.visitTree(node, new NodeContainerVisitAction() {
 			private int count = startLeft;
 
@@ -52,7 +48,7 @@ import java.util.Stack;
 			}
 
 			public void visitDown(AbstractNode child) {
-				Y n = factory.createNode(child);
+				NodeContainer<X> n = new NodeContainer<X>((X) child);
 				nodeStack.push(n);
 				n.setLeft(count++);
 				toSave.add(n);

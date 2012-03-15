@@ -7,24 +7,11 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.service.tree.AbstractNode;
-import com.service.tree.INodeContainerFactory;
-import com.service.tree.TreeNode;
-import com.service.tree.TreeNodeException;
-import com.service.tree.test.NodeDaoTest;
-import com.service.tree.test.NodeRepository;
-import com.service.tree.test.NodeSetTest;
-import com.service.tree.test.NodeTest;
 
 
 public class TreeNodeTest {
 
-	private TreeNode<NodeSetTest, NodeTest> tree = new TreeNode<NodeSetTest, NodeTest>(
-			new INodeContainerFactory<NodeSetTest>() {
-				public NodeSetTest createNode(AbstractNode node) {
-					return new NodeSetTest(node);
-				}
-			});
+	private TreeNode<NodeTest> tree = new TreeNode<NodeTest>();
 
 	@Before
 	public void setDao() {

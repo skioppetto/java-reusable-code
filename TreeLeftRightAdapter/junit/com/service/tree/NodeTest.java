@@ -1,4 +1,4 @@
-package com.service.tree.test;
+package com.service.tree;
 
 import com.service.tree.AbstractNode;
 

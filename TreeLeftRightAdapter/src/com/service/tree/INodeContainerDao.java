@@ -2,25 +2,25 @@ package com.service.tree;
 
 import java.util.List;
 
-public interface INodeContainerDao<Y extends NodeContainer<X>, X extends AbstractNode> {
+public interface INodeContainerDao< X extends AbstractNode> {
 
-	List<Y> getAllNodeContainers();
+	List<NodeContainer<X>> getAllNodeContainers();
 
 	void startTransaction();
 
-	List<Y> getRightMostProducts(int minRightValue);
+	List<NodeContainer<X>> getRightMostProducts(int minRightValue);
 
-	Y getContainerByNodeUID(Object uid);
+	NodeContainer<X> getContainerByNodeUID(Object uid);
 
-	List<Y> getLeftMostProducts(int minLeftValue);
+	List<NodeContainer<X>> getLeftMostProducts(int minLeftValue);
 
-	void saveOrUpdateProducts(List<Y> containerNodes);
+	void saveOrUpdateProducts(List<NodeContainer<X>> containerNodes);
 
-	Y getMaxRightDescendant(Y parent);
+	NodeContainer<X> getMaxRightDescendant(NodeContainer<X> parent);
 
 	void commitTransaction();
 
-	List<Y> getNodeContainersBetween(int left, int right);
+	List<NodeContainer<X>> getNodeContainersBetween(int left, int right);
 
-	List<Y> getNodeContainersExternal(int left, int right);
+	List<NodeContainer<X>> getNodeContainersExternal(int left, int right);
 }

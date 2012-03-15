@@ -7,33 +7,22 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.service.tree.AbstractNode;
-import com.service.tree.INodeContainerFactory;
-import com.service.tree.TreeNodeServices;
-import com.service.tree.test.NodeRepository;
-import com.service.tree.test.NodeSetTest;
-import com.service.tree.test.NodeTest;
 
 
 public class TreeNodeServicesTest {
 
-	INodeContainerFactory<NodeSetTest> factory = new INodeContainerFactory<NodeSetTest>() {
-		public NodeSetTest createNode(AbstractNode node) {
-			return new NodeSetTest(node);
-		}
-	};
+	
+	NodeContainer<NodeTest> x1_16 = NodeRepository.x1_16;
+	NodeContainer<NodeTest> x2_7 = NodeRepository.x2_7;
+	NodeContainer<NodeTest> x3_4 = NodeRepository.x3_4;
+	NodeContainer<NodeTest> x5_6 = NodeRepository.x5_6;
+	NodeContainer<NodeTest> x8_9 = NodeRepository.x8_9;
+	NodeContainer<NodeTest> x10_15 = NodeRepository.x10_15;
+	NodeContainer<NodeTest> x11_14 = NodeRepository.x11_14;
+	NodeContainer<NodeTest> x12_13 = NodeRepository.x12_13;
 
-	NodeSetTest x1_16 = NodeRepository.x1_16;
-	NodeSetTest x2_7 = NodeRepository.x2_7;
-	NodeSetTest x3_4 = NodeRepository.x3_4;
-	NodeSetTest x5_6 = NodeRepository.x5_6;
-	NodeSetTest x8_9 = NodeRepository.x8_9;
-	NodeSetTest x10_15 = NodeRepository.x10_15;
-	NodeSetTest x11_14 = NodeRepository.x11_14;
-	NodeSetTest x12_13 = NodeRepository.x12_13;
-
-	private List<NodeSetTest> getOrderedList() {
-		List<NodeSetTest> list = new ArrayList<NodeSetTest>();
+	private List<NodeContainer<NodeTest>> getOrderedList() {
+		List<NodeContainer<NodeTest>> list = new ArrayList<NodeContainer<NodeTest>>();
 		list.add(x1_16);
 		list.add(x2_7);
 		list.add(x3_4);
@@ -50,8 +39,7 @@ public class TreeNodeServicesTest {
 	@Test
 	public void getNodeTreeAndContainerListTest() {
 
-		TreeNodeServices<NodeSetTest, NodeTest> adapter = new TreeNodeServices<NodeSetTest, NodeTest>(
-				factory);
+		TreeNodeServices<NodeTest> adapter = new TreeNodeServices<NodeTest>();
 		NodeTest root = adapter.getNodeTree(getOrderedList());
 		Assert.assertTrue(x1_16.getNode().getChildren()
 				.contains(x2_7.getNode()));
@@ -66,7 +54,7 @@ public class TreeNodeServicesTest {
 		Assert.assertTrue(x11_14.getNode().getChildren()
 				.contains(x12_13.getNode()));
 
-		List<NodeSetTest> valuList = adapter.getNodeContainerList(root, 1);
+		List<NodeContainer<NodeTest>> valuList = adapter.getNodeContainerList(root, 1);
 		Assert.assertEquals(8, valuList.size());
 		Assert.assertEquals(valuList.get(0).getLeft(), 1);
 		Assert.assertEquals(valuList.get(0).getRight(), 16);
@@ -89,8 +77,7 @@ public class TreeNodeServicesTest {
 
 	@Test
 	public void countDescendants() {
-		TreeNodeServices<NodeSetTest, NodeTest> adapter = new TreeNodeServices<NodeSetTest, NodeTest>(
-				factory);
+		TreeNodeServices<NodeTest> adapter = new TreeNodeServices<NodeTest>();
 		NodeTest product = NodeRepository.buildNodes();
 		Assert.assertEquals(6, adapter.countDescendants(product));
 		product.addChild(new NodeTest("MyProduct"));

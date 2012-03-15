@@ -1,21 +1,27 @@
 package com.service.tree;
 
+
 public class NodeContainer<X extends AbstractNode> {
 
-	protected int left;
-	protected int right;
-	protected X node;
+	private int left;
+	private int right;
+	private X node;
 
-	
-	public NodeContainer(X child) {
+	protected NodeContainer(X child) {
 		this.node = child;
+	}
+
+	protected NodeContainer(X nodeTest, int left, int right) {
+		this.node = nodeTest;
+		this.left = left;
+		this.right = right;
 	}
 
 	public X getNode() {
 		return node;
 	}
 
-	public void setNode(X node) {
+	protected void setNode(X node) {
 		this.node = node;
 	}
 

@@ -7,8 +7,6 @@ import org.junit.Test;
 import com.service.tree.AbstractNode;
 import com.service.tree.NodeContainerVisitAction;
 import com.service.tree.NodeContainerVisitor;
-import com.service.tree.test.NodeRepository;
-import com.service.tree.test.NodeTest;
 
 
 public class NodeContainerVisitorTest {

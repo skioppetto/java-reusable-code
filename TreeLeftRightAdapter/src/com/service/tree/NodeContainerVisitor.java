@@ -1,6 +1,5 @@
 package com.service.tree;
 
-
 public class NodeContainerVisitor {
 
 	public void visitTree(AbstractNode nodeSet, NodeContainerVisitAction action) {
