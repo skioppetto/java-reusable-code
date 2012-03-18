@@ -1,0 +1,30 @@
+---------------------------------------
+Google Places Java API
+---------------------------------------
+
+Public class: GooPlacesEngine
+	
+	can perform:
+		- google places search
+		- google place detail
+
+	TODO:
+		high level tests
+
+What happen if:
+	- new google places types:
+	: system will ignore unknown types and they will
+	be logged.
+	: to extend types need to add items to GooPlacesType enum
+
+	- new google places languages:
+	: language is optional in search parameters, unknown 
+	languages will be ignored and logged
+	: to extends known languages add items ti GooLanguage enum
+
+	- new properties in XML response 
+	: need to modify GooPlacesResultDirector setting the new values
+	on response object and IPlace*Builder to add mapping to XML file
+
+
+	
