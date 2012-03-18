@@ -14,11 +14,9 @@ public class GooPlacesEngine {
 
 	public GooPlaceSuggest suggestPlaces(GooSuggestParameters parameters)
 			throws PlacesEngineException {
-
 		URL url = urlBuilder.buildPlacesSuggestUrl(parameters);
 		InputStream stream = httpHandler.getStream(url);
 		return parser.parseSuggest(stream);
-
 	}
 
 	public GooPlaceDetail getDetail(GooDetailParameters parameters)
@@ -26,7 +24,6 @@ public class GooPlacesEngine {
 		URL url = urlBuilder.buildPlacesDetailUrl(parameters);
 		InputStream stream = httpHandler.getStream(url);
 		return parser.parseDetailPlace(stream);
-
 	}
 
 	public void setDetailBuilder(IPlaceDetailBuilder builder) {
