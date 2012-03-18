@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlaceSearchResponse>
+ <status>OK</status>
+ <result>
+  <name>Contrà Lodi</name>
+  <vicinity>Vicenza</vicinity>
+  <type>route</type>
+  <geometry>
+   <location>
+    <lat>45.5486452</lat>
+    <lng>11.5392852</lng>
+   </location>
+   <viewport>
+    <southwest>
+     <lat>45.5486400</lat>
+     <lng>11.5383100</lng>
+    </southwest>
+    <northeast>
+     <lat>45.5486504</lat>
+     <lng>11.5402605</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png</icon>
+  <reference>CnRtAAAA-IshlOHCZPbUmWQ4JrvtYLSMowuan-MoBs8NRuIjB-6z17LC48BH037kvlJP5p5HpRxYMuLFFNpnRmpIND_nB1mrv4iV8NlGTi95suYM096nX4UtvMKJGHu8rWxzZEMMFyTC9ich9zN5GdDCsiJBSBIQ0xq3Kukxo_5nhCsjCUtqYBoUS_rFrAWbT2C6BIOfM1pP86tPi-g</reference>
+  <id>3aa9db85e25183be1a03754124539580ecad8148</id>
+ </result>
+ <result>
+  <name>Studio Rebecca &amp; Associati</name>
+  <vicinity>Contrà Lodi, 31, Vicenza</vicinity>
+  <type>accounting</type>
+  <type>finance</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5485540</lat>
+    <lng>11.5390760</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CoQBcQAAAAZn470KsJR0UY2Dek8SIqf2egiVFzG_vFBp_qpaoWkKKQQUi46hoHwxMRnnU_s8S2wvukpn3ywSKqAbHb-x-Vh3ZdctlNjiwop6rT70G3IyOUCtXlVwzprlibdNEyqSjOnUXIvEey9H5dh_6HwC4BWMdoz2cpFj2qBpdrNtpqeaEhDsnp806GovPFP3A16s-GwWGhR23t_4LRYuFfbgIpASl0nf2rZPAw</reference>
+  <id>c3a2119aaf8a1270e774ddc4f06901e49bf605be</id>
+ </result>
+ <result>
+  <name>Linfa Associazione Contro Il Cancro</name>
+  <vicinity>Contrà Lodi, 24, Vicenza</vicinity>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5487360</lat>
+    <lng>11.5393970</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CoQBegAAADm7NSlearpMSLVcpkjaxtYoSWT1tVacUV9EY7fsT4JSf34pPWtgE63g-AexlZub5wRvXZG_bvanyJM3rHPQlmehDTl-cbP7jP2wQYAVrjGTXP8q9CMppIo7vdnp38dvHtIQ4_h6clZUepwzaMoa8BOSdkV7zgiW7SvWAK4lAkxeEhAFEJBTbLwKLKbLI2-lToN8GhQldCCQZpptzM2bF08D1ACqdYIzUA</reference>
+  <id>1be436a020ae195ddff9675d9973e3bc9fe28e74</id>
+ </result>
+ <result>
+  <name>Allianz Lloyd Adriatico - Agenzia di Vicenza Centro - Agente Luca Pellegatti</name>
+  <vicinity>Contrà Cantarane, 18, Vicenza</vicinity>
+  <type>insurance_agency</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5484470</lat>
+    <lng>11.5401480</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CrQBpAAAAEZ5A4G20hzmfnF96TxDbxS9ispjEz_cZyGznGBZmdxE-kqom4nNNaQ-gl7pvxWkkbUCOQWCdCiaf2GuRrCzrY5jXYXIV6CRkzGqN4MHHJM45oGEiePkNFQWjUv_nHbT6QGLd3kFeGTsRndJP2HUB0mue1T7jytVnCx3QahrinZdW4O64sHuBpBYYstCkTFziX5xh2b8yFk-oeC0z1Bc6zSdtgwc6I4cafTvgEA2XYNtEhBEDvHPw6feobC-HDcEqXYhGhS6WuxSbp25Ouf6Tj3o2nkEJLGe6A</reference>
+  <id>3ff5de4d6e08e78a5b548d79a70f08477048bfcf</id>
+ </result>
+ <result>
+  <name>Studio Pilla - Difensori Tributari Associati</name>
+  <vicinity>Contrà Lodi, 32, Vicenza</vicinity>
+  <type>accounting</type>
+  <type>finance</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5487340</lat>
+    <lng>11.5391510</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CpQBhAAAAK9ELEluCT5HN2srofqlcn-gSyzoZwBbzyO8Mxw-B3cpiuGQpVLxBTLLLvFCjP5tXmpN_u2KD1OjObUNJMNzJAeGLkS-NTrNa2MWGmUa6LYwfEdvXLlvRUHiPWhCE6uwcKHd2jeImaUTMTWmKWOzWENehpARpTMRvObjqiWGPxS5-zQMSRgAdTkNGamELRGj5hIQeh5MF8kewVlX0-DxTyu5-hoUkIOk5m1hd56wZnFigMigp7lszTM</reference>
+  <id>cea013341eed484f9b6f9b2074c30cd703c0510f</id>
+ </result>
+ <result>
+  <name>A.N.C.R.Associazione Nazionale Combattenti E Reduci</name>
+  <vicinity>Contrà Lodi, 24, Vicenza</vicinity>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5487360</lat>
+    <lng>11.5393970</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CpQBigAAAPrTuqb7ZQRiQjEl6h5suh-c78b6v-eKI7T-kVWrieMnco8YPUDXJ0dcnyVFXdJWJYHJCOOLlh3_njHIAZFdFiufYsTofO0eAElXqqt6eMmGMxcOSqU5GIx6qcm94DdxiNMz4jhYIVg0FM9t_3txsgw25lU-Dbd-uJkpjFJT55F6eAkJGKrEYJgT2XO1E4xWERIQOmu-VVe4p1Cyc4UuqsbuoBoUuNA-KPPHlFT5uMuhzshRBIUbw7s</reference>
+  <id>cdda27fae6c6a86c430db64fb3a66531425081c0</id>
+ </result>
+ <result>
+  <name>Studio Rebecca &amp; Associati - Dottore Commercialista</name>
+  <vicinity>Contrà Lodi, 31, Vicenza</vicinity>
+  <type>accounting</type>
+  <type>finance</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5485540</lat>
+    <lng>11.5390760</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CpQBigAAADeMnBPB9cQU1aGFJdrApl_2-IxfyMh8lYbvrZjAC3gy0131BqcKDoNB7roT2ADwb3IsdENLW0GI4fTza8znxdf1ELPEEpWyptsDRm7Q2BBKGB4WIkqIrQ03S-C7GfT7KcHAJMda4W_QeUYYZRdJIrHsfi3diKivwwxXamX4SvTj_pvCFk58MGTKB6MOk9h6QBIQg1vUltE95yuv5gHrY_HvrxoUBXsKgBu7WeBeJwvLRSvcchmwbdE</reference>
+  <id>4206fa2bf32b42964a55200413e531eed40a24cf</id>
+ </result>
+ <result>
+  <name>Agenzia Lloyd Adriatico S.A.S. Di Etenli Paola &amp; C.</name>
+  <vicinity>Contrà Cantarane, 18, Vicenza</vicinity>
+  <type>insurance_agency</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5484590</lat>
+    <lng>11.5400680</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CpQBiwAAACXEq8ZTar-qHrhmpEjfLuo9xDvjYAW72NerS2W6S9FOWwie7CN5ZAcFPgHya2BduET5I8MUjhNaz7GhlpdEDpFZGVdhlQEe3msAxW5ry5NY6TeFdRXYmxoQ55Z5Lfh1vLDosIyfqNymXTy9i7M_JfuL4U70OodTNnZa0VvUaCZjE8ujNDcDjn3zbETjjc82TxIQgFB4e5c-4oO87wfmMq0HFRoUrhgNpxq8roWiAITr_EnDukuj9bY</reference>
+  <id>46460acebc0aacb3aea60ee5d3df03fdb654c930</id>
+ </result>
+ <result>
+  <name>Radiologia Medica Sas - Consulenze - Radiologia Medica</name>
+  <vicinity>Contrà Lodi, 32, Vicenza</vicinity>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5487340</lat>
+    <lng>11.5391510</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CpQBjgAAAI_Gr6MHmaL5hwDfYubjXa9Xu5k9CH-HRt1S5bqO0lMaOWwPH1ytw-v2W9kvm3wJ6q4M9OLK-kQq3i_vSFpKAcE2QLnYmaQDw-Gz7WtcMxHde-u-ohNUqjsEg4sxf6e2Un_9LXa9C_qM3kqrT_H5KDpAQTNVpRuIs6rh1M_o0SR31-gFr7_gdIUX2CWKTxp1GRIQBeeC_VCQTuC0ozRWe_2gIxoUQdRO3LyWkzxYPnAj5a0mexSiUks</reference>
+  <id>06da6ebc7d670f0df9311e5e740d54c761f4c3c7</id>
+ </result>
+ <result>
+  <name>Bancaro Stefano</name>
+  <vicinity>Contrà Lodi, 32, Vicenza</vicinity>
+  <type>dentist</type>
+  <type>health</type>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5487340</lat>
+    <lng>11.5390500</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/dentist-71.png</icon>
+  <reference>CnRmAAAAEMFhHZWdC8Y6dv6Ggv9cuyIZnbbnp0GPqIu1C08XmLNZJXqUMf9Z5qKRJ1xpf_p_Az78JWFs4OKwj51RXIf-RHiX5HfRZv7iUrOFm0ruPDc3KrLxosUCoslrEMVJtcJPgWLZWYxKxoW3Gu2uLQB8tBIQ0-i4ZmaUFxlD3sE8ipLWIRoUCygHu_EGzE9ievwRKucc9Mt07Gs</reference>
+  <id>a668691c6ca507ae94d8e67f3a6c011e91b7c7e9</id>
+ </result>
+ <result>
+  <name>Studio Di Architettura Ed Ingegneria S.S. Arch. Ubaldo Pezzin E Ing</name>
+  <vicinity>Contrà Cantarane, 18, Vicenza</vicinity>
+  <type>establishment</type>
+  <geometry>
+   <location>
+    <lat>45.5484590</lat>
+    <lng>11.5400680</lng>
+   </location>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CqQBmwAAALlQpyXjJHR7a0eEpt7adGmU2IHhBrKV14TXuPXgM5a-AgPkjg1mHuNC55Sfaqz11xSbP85TQqRCNXjFcIlIHjmFZOTwtYEEctXXN8EecAK3WYUfuJWzGmm4bGA2eTfWLr4WMBJnKqz93qeY6FN0qFLj_xBcjKZ81nyncVMyGNVmyUscz7McMtc0pQn0_pUG1R69eKt0NLEMhl0RNH71XuoSEPzPnomPwt-C6pFWAL-3WWsaFBE_eAYbfcO1ZRznq4CswjkjQcRo</reference>
+  <id>bdbf852928f4f1ee47452530589bcdafd1a06324</id>
+ </result>
+ <result>
+  <name>Vicenza</name>
+  <vicinity>Vicenza</vicinity>
+  <type>locality</type>
+  <type>political</type>
+  <geometry>
+   <location>
+    <lat>45.5459053</lat>
+    <lng>11.5403070</lng>
+   </location>
+   <viewport>
+    <southwest>
+     <lat>45.4833092</lat>
+     <lng>11.4857126</lng>
+    </southwest>
+    <northeast>
+     <lat>45.6090663</lat>
+     <lng>11.6150265</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png</icon>
+  <reference>CnRoAAAApg_CHqVA82nuACVeivexHZWlzy-EBRFnNSBNzF6MEEo_XBp77VlVu6YFVHKkvnp_BvNEfHZJLZvnA4-R-GcLhGoi0yv3sTA4IQjROBq3jgLaVMMOX8G1Q71X78oLSCecTpIvcxbqmtpFrEJA2ERYiRIQSTkxVlKYnFthhNkv6ioALxoUcTL6FXGPbf8HeLjOLjqrYUkgAU0</reference>
+  <id>763c4a941e3fe104d3ad9107ae552d26b721c44f</id>
+ </result>
+ <html_attribution>Schede di &lt;a href=&quot;http://www.paginegialle.it/&quot;&gt;PagineGialle.it&lt;/a&gt;</html_attribution>
+</PlaceSearchResponse>

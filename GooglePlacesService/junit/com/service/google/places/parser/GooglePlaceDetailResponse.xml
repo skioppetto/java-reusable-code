@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlaceDetailsResponse>
+ <status>OK</status>
+ <result>
+  <name>Auchan di Vicenza</name>
+  <vicinity>Strada delle Cattane, 71, Vicenza</vicinity>
+  <type>atm</type>
+  <type>shopping_mall</type>
+  <type>finance</type>
+  <type>establishment</type>
+  <formatted_phone_number>0444 286311</formatted_phone_number>
+  <formatted_address>Strada delle Cattane, 71, Vicenza, Italia</formatted_address>
+  <address_component>
+   <long_name>71</long_name>
+   <short_name>71</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>Strada delle Cattane</long_name>
+   <short_name>Strada delle Cattane</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>Vicenza</long_name>
+   <short_name>Vicenza</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Vicenza</long_name>
+   <short_name>Vicenza</short_name>
+   <type>administrative_area_level_2</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Veneto</long_name>
+   <short_name>Veneto</short_name>
+   <type>administrative_area_level_1</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>IT</long_name>
+   <short_name>IT</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>36100</long_name>
+   <short_name>36100</short_name>
+   <type>postal_code</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>45.5473010</lat>
+    <lng>11.5106300</lng>
+   </location>
+  </geometry>
+  <url>http://maps.google.com/maps/place?cid=15321521973906098671</url>
+  <icon>http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png</icon>
+  <reference>CnRpAAAAbtX5XDS2ppXQ9ba4VOU-cy5ZupKI2r600XGhItEmFyiF0QxLPhFNiEiVStJG_j3DM2flTHxuNwzGoMu5V7xX-j5WvwJauXkD8nNM4jjMT12XPJD3l8OdXFZxKEHThNFyghtAb5Kf_r3j5HoLvRKB-hIQBrk9Qvpa9-GEGI8nTeAQrhoUcKYJuqtoG8ngysKYvWaP_LtWfrk</reference>
+  <id>4a40cfdbc9b56427a363c4a2c5aa05eb2c45d7d4</id>
+  <international_phone_number>+39 0444 286311</international_phone_number>
+  <website>http://www.auchan.it/</website>
+ </result>
+ <html_attribution>Schede di &lt;a href=&quot;http://www.paginegialle.it/&quot;&gt;PagineGialle.it&lt;/a&gt;</html_attribution>
+</PlaceDetailsResponse>
