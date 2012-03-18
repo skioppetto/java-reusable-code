@@ -5,6 +5,6 @@ import java.net.URL;
 
 public interface IHttpHandler {
 
-	public abstract InputStream getStream(URL url);
+	InputStream getStream(URL url);
 
 }

@@ -14,16 +14,16 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.service.google.places.GooBuilderParseException;
+import com.service.google.places.ResponseBuilderParseException;
 import com.service.google.places.IPlaceSuggestItemBuilder;
 
-public abstract class XPathPlaceBaseBuilder implements IPlaceSuggestItemBuilder{
+ abstract class XPathPlaceBaseBuilder implements IPlaceSuggestItemBuilder{
 
-	protected XPath xpath;
-	protected Document document;
+	 XPath xpath;
+	 Document document;
 	
 	
-	public void openStream(InputStream stream) throws GooBuilderParseException {
+	public void openStream(InputStream stream) throws ResponseBuilderParseException {
 		DocumentBuilderFactory domFactory = DocumentBuilderFactory
 				.newInstance();
 		domFactory.setNamespaceAware(true);
@@ -32,24 +32,16 @@ public abstract class XPathPlaceBaseBuilder implements IPlaceSuggestItemBuilder{
 			document = builder.parse(stream);
 			xpath = XPathFactory.newInstance().newXPath();
 		} catch (ParserConfigurationException e) {
-			throw new GooBuilderParseException(e);
+			throw new ResponseBuilderParseException(e);
 		} catch (SAXException e1) {
-			throw new GooBuilderParseException(e1);
+			throw new ResponseBuilderParseException(e1);
 		} catch (IOException e2) {
-			throw new GooBuilderParseException(e2);
+			throw new ResponseBuilderParseException(e2);
 		}
 
 	}
 
-	public String buildStatus() {
-		try {
-			return (String) xpath.compile("/PlaceSearchResponse/status/text()")
-					.evaluate(document, XPathConstants.STRING);
-		} catch (XPathExpressionException e) {
-			// TODO:manage logging
-			return null;
-		}
-	}
+	public abstract String buildStatus();
 
 	public String buildVicinity() {
 		return getResultItemString("vicinity");

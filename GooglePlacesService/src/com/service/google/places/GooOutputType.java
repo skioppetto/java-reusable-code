@@ -1,5 +1,7 @@
 package com.service.google.places;
 
-public enum GooCountry {
+ enum GooOutputType {
 
+	json, xml;
+	
 }

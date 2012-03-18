@@ -8,28 +8,31 @@ public class GooAddressItem {
 	private String value;
 	private String shortValue;
 
-	public List<GooPlacesType> getTypes() {
-		return types;
+	protected GooAddressItem() {
 	}
 
-	public void setTypes(List<GooPlacesType> type) {
-		this.types = type;
+	public List<GooPlacesType> getTypes() {
+		return types;
 	}
 
 	public String getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public String getShort() {
+		return shortValue;
+	}
+
+	 void setTypes(List<GooPlacesType> type) {
+		this.types = type;
+	}
+
+	 void setValue(String value) {
 		this.value = value;
 	}
 
-	public void setShort(String shortVal) {
+	 void setShort(String shortVal) {
 		this.shortValue = shortVal;
-	}
-
-	public String getShort() {
-		return shortValue;
 	}
 
 }

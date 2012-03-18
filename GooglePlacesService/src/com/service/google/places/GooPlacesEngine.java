@@ -7,13 +7,13 @@ import com.service.google.places.http.HTTPHandlerImpl;
 
 public class GooPlacesEngine {
 
-	private GooPlacesUrlBuilder urlBuilder = new GooPlacesUrlBuilder(
-			OutputType.xml);
+	private PlacesEngineUrlBuilder urlBuilder = new PlacesEngineUrlBuilder(
+			GooOutputType.xml);
 	private IHttpHandler httpHandler = new HTTPHandlerImpl();
-	private GooPlacesResultDirector parser = new GooPlacesResultDirector();
+	private PlacesEngineResultDirector parser = new PlacesEngineResultDirector();
 
-	public GooPlaceSuggest suggestPlaces(SuggestParameters parameters)
-			throws GooPlacesException {
+	public GooPlaceSuggest suggestPlaces(GooSuggestParameters parameters)
+			throws PlacesEngineException {
 
 		URL url = urlBuilder.buildPlacesSuggestUrl(parameters);
 		InputStream stream = httpHandler.getStream(url);
@@ -21,8 +21,8 @@ public class GooPlacesEngine {
 
 	}
 
-	public GooPlaceDetail getDetail(String uid) throws GooPlacesException {
-		URL url = urlBuilder.buildPlacesDetailUrl(uid);
+	public GooPlaceDetail getDetail(GooDetailParameters parameters) throws PlacesEngineException {
+		URL url = urlBuilder.buildPlacesDetailUrl(parameters);
 		InputStream stream = httpHandler.getStream(url);
 		return parser.parseDetailPlace(stream);
 

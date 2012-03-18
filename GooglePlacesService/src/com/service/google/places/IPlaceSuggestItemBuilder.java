@@ -4,29 +4,29 @@ import java.io.InputStream;
 
 public interface IPlaceSuggestItemBuilder {
 
-	public abstract String buildStatus();
+	String buildStatus();
 
-	public abstract void openStream(InputStream stream)
-			throws GooBuilderParseException;
+	void openStream(InputStream stream)
+			throws ResponseBuilderParseException;
 
-	public abstract String buildVicinity();
+	String buildVicinity();
 
-	public abstract double buildGeometryLatitude();
+	double buildGeometryLatitude();
 
-	public abstract double buildGeometryLongitude();
+	double buildGeometryLongitude();
 
-	public abstract String buildIcon();
+	String buildIcon();
 
-	public abstract String buildName();
+	String buildName();
 
-	public abstract Double buildRating();
+	Double buildRating();
 
-	public abstract String buildReference();
+	String buildReference();
 
-	public abstract String buildType(int typeId);
+	String buildType(int typeId);
 
-	public abstract int buildTypesCount();
+	int buildTypesCount();
 
-	public abstract String buildId();
+	String buildId();
 
 }

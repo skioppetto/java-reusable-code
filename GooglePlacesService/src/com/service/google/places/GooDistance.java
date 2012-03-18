@@ -1,6 +1,6 @@
 package com.service.google.places;
 
-public class Distance {
+public class GooDistance {
 	public enum Unit {
 		Meters, Kilometers
 	}
@@ -8,7 +8,7 @@ public class Distance {
 	private int value;
 	private Unit unit;
 
-	public Distance(int value, Unit unit) {
+	public GooDistance(int value, Unit unit) {
 		super();
 		this.value = value;
 		this.unit = unit;

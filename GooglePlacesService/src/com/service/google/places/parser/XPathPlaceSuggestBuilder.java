@@ -5,7 +5,8 @@ import javax.xml.xpath.XPathExpressionException;
 
 import com.service.google.places.IPlaceSuggestBuilder;
 
-public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements IPlaceSuggestBuilder {
+public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements
+		IPlaceSuggestBuilder {
 
 	private int resultId;
 
@@ -14,6 +15,16 @@ public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements I
 		this.resultId = resultId;
 	}
 
+	@Override
+	public String buildStatus() {
+		try {
+			return (String) xpath.compile("/PlaceSearchResponse/status/text()")
+					.evaluate(document, XPathConstants.STRING);
+		} catch (XPathExpressionException e) {
+			// TODO:manage logging
+			return null;
+		}
+	}
 
 	@Override
 	public int buildTypesCount() {
@@ -39,7 +50,7 @@ public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements I
 			return 0;
 		}
 	}
-	
+
 	protected Double getResultItemDouble(String key) {
 		try {
 			Number val = ((Number) xpath.compile(

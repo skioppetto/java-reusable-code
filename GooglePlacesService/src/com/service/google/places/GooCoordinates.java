@@ -1,13 +1,13 @@
 package com.service.google.places;
 
-public class Coordinates {
+public class GooCoordinates {
 
 	private double latitude;
 	private double longitude;
 	
 	
 	
-	public Coordinates(double latitude, double longitude) {
+	public GooCoordinates(double latitude, double longitude) {
 		super();
 		this.latitude = latitude;
 		this.longitude = longitude;

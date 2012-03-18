@@ -2,47 +2,28 @@ package com.service.google.places;
 
 import java.util.List;
 
-public class SuggestParameters {
+public class GooSuggestParameters extends PlacesEngineRequestParameters {
 
-	private Coordinates coordinates;
-	private Distance radius;
-	private Boolean fromDeviceUsingSensor;
-	private String key;
+	private GooCoordinates coordinates;
+	private GooDistance radius;
 	private String allFieldsSearchTerm;
 	private String placeNameSearchTerm;
-	private GooLanguage language;
 	private List<GooPlacesType> types;
 
-	public Coordinates getCoordinates() {
+	public GooCoordinates getCoordinates() {
 		return coordinates;
 	}
 
-	public void setCoordinates(Coordinates coordinates) {
+	public void setCoordinates(GooCoordinates coordinates) {
 		this.coordinates = coordinates;
 	}
 
-	public Distance getRadius() {
+	public GooDistance getRadius() {
 		return radius;
 	}
 
-	public void setRadius(Distance radius) {
+	public void setRadius(GooDistance radius) {
 		this.radius = radius;
-	}
-
-	public Boolean getFromDeviceUsingSensor() {
-		return fromDeviceUsingSensor;
-	}
-
-	public void setFromDeviceUsingSensor(Boolean fromDeviceUsingSensor) {
-		this.fromDeviceUsingSensor = fromDeviceUsingSensor;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
 	}
 
 	public String getAllFieldsSearchTerm() {
@@ -68,14 +49,6 @@ public class SuggestParameters {
 
 	public void setTypes(List<GooPlacesType> types) {
 		this.types = types;
-	}
-
-	public GooLanguage getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(GooLanguage language) {
-		this.language = language;
 	}
 
 }

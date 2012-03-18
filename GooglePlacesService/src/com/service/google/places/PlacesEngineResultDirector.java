@@ -4,40 +4,44 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GooPlacesResultDirector {
+import com.service.google.places.parser.XPathPlaceDetailBuilder;
+import com.service.google.places.parser.XPathPlaceSuggestBuilder;
 
-	private IPlaceSuggestBuilder placeSuggestBuilder;
-	private IPlaceDetailBuilder placeDetailBuilder;
+ class PlacesEngineResultDirector {
 
-	public GooPlaceSuggest parseSuggest(InputStream stream)
-			throws GooBuilderParseException {
+	private IPlaceSuggestBuilder placeSuggestBuilder = new XPathPlaceSuggestBuilder();
+	private IPlaceDetailBuilder placeDetailBuilder = new XPathPlaceDetailBuilder();
+
+	GooPlaceSuggest parseSuggest(InputStream stream)
+			throws ResponseBuilderParseException {
 
 		placeSuggestBuilder.openStream(stream);
 		GooPlaceSuggest suggest = new GooPlaceSuggest();
-		RequestStatus status = RequestStatus.valueOf(placeSuggestBuilder
+		GooResponseStatus status = GooResponseStatus.valueOf(placeSuggestBuilder
 				.buildStatus());
 		suggest.setStatus(status);
 
-		if (!suggest.getStatus().equals(RequestStatus.OK))
+		if (!suggest.getStatus().equals(GooResponseStatus.OK))
 			return suggest;
 		List<GooPlaceSuggestItem> results = new ArrayList<GooPlaceSuggestItem>();
 		for (int i = 0; i < placeSuggestBuilder.buildResultsCount(); i++) {
 			GooPlaceSuggestItem item = new GooPlaceSuggestItem();
 			placeSuggestBuilder.setItemId(i);
 			parseSuggestItem(placeSuggestBuilder, item);
+			results.add(item);
 		}
 		suggest.setItems(results);
 		return suggest;
 	}
 
-	public GooPlaceDetail parseDetailPlace(InputStream stream)
-			throws GooBuilderParseException {
+	GooPlaceDetail parseDetailPlace(InputStream stream)
+			throws ResponseBuilderParseException {
 		placeDetailBuilder.openStream(stream);
 		GooPlaceDetail detail = new GooPlaceDetail();
-		RequestStatus status = RequestStatus.valueOf(placeDetailBuilder
+		GooResponseStatus status = GooResponseStatus.valueOf(placeDetailBuilder
 				.buildStatus());
 		detail.setStatus(status);
-		if (!detail.getStatus().equals(RequestStatus.OK))
+		if (!detail.getStatus().equals(GooResponseStatus.OK))
 			return detail;
 		parseSuggestItem(placeDetailBuilder, detail);
 		detail.setFormattedPhoneNumber(placeDetailBuilder
@@ -72,7 +76,7 @@ public class GooPlacesResultDirector {
 	private static void parseSuggestItem(IPlaceSuggestItemBuilder builder,
 			GooPlaceSuggestItem item) {
 		item.setSimplifiedAddress(builder.buildVicinity());
-		item.setCoordinates(new Coordinates(builder.buildGeometryLatitude(),
+		item.setCoordinates(new GooCoordinates(builder.buildGeometryLatitude(),
 				builder.buildGeometryLongitude()));
 		item.setIcon(builder.buildIcon());
 		item.setName(builder.buildName());
@@ -83,22 +87,23 @@ public class GooPlacesResultDirector {
 			GooPlacesType type = GooPlacesType.valueOf(builder.buildType(j));
 			types.add(type);
 		}
+		item.setTypes(types);
 		item.setUid(builder.buildId());
 	}
 
-	public IPlaceSuggestItemBuilder getPlaceSuggestBuilder() {
+	IPlaceSuggestItemBuilder getPlaceSuggestBuilder() {
 		return placeSuggestBuilder;
 	}
 
-	public void setPlaceSuggestBuilder(IPlaceSuggestBuilder placeSuggestBuilder) {
+	void setPlaceSuggestBuilder(IPlaceSuggestBuilder placeSuggestBuilder) {
 		this.placeSuggestBuilder = placeSuggestBuilder;
 	}
 
-	public IPlaceDetailBuilder getPlaceDetailBuilder() {
+	IPlaceDetailBuilder getPlaceDetailBuilder() {
 		return placeDetailBuilder;
 	}
 
-	public void setPlaceDetailBuilder(IPlaceDetailBuilder placeDetailBuilder) {
+	void setPlaceDetailBuilder(IPlaceDetailBuilder placeDetailBuilder) {
 		this.placeDetailBuilder = placeDetailBuilder;
 	}
 

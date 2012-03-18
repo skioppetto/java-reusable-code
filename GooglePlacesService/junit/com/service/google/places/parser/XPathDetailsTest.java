@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.service.google.places.GooBuilderParseException;
+import com.service.google.places.ResponseBuilderParseException;
 import com.service.google.places.IPlaceDetailBuilder;
 
 public class XPathDetailsTest {
@@ -29,26 +29,26 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void loadStream() throws GooBuilderParseException {
+	public void loadStream() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 	}
 
 	@Test
-	public void buildStatus() throws GooBuilderParseException {
+	public void buildStatus() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String status = builder.buildStatus();
 		Assert.assertEquals("OK", status);
 	}
 
 	@Test
-	public void buildVicinity() throws GooBuilderParseException {
+	public void buildVicinity() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String vicinity = builder.buildVicinity();
 		Assert.assertEquals("Strada delle Cattane, 71, Vicenza", vicinity);
 	}
 
 	@Test
-	public void buildGeometryLatitude() throws GooBuilderParseException {
+	public void buildGeometryLatitude() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		double value = builder.buildGeometryLatitude();
 		Assert.assertEquals(45.5473010, value);
@@ -56,14 +56,14 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildGeometryLongitude() throws GooBuilderParseException {
+	public void buildGeometryLongitude() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		double value = builder.buildGeometryLongitude();
 		Assert.assertEquals(11.5106300, value);
 	}
 
 	@Test
-	public void buildIcon() throws GooBuilderParseException {
+	public void buildIcon() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 
 		String icon = builder.buildIcon();
@@ -74,7 +74,7 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildName() throws GooBuilderParseException {
+	public void buildName() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String name = builder.buildName();
 		Assert.assertEquals("Auchan di Vicenza", name);
@@ -82,7 +82,7 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildRating() throws GooBuilderParseException {
+	public void buildRating() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		Double value = builder.buildRating();
 		Assert.assertEquals(null, value);
@@ -90,7 +90,7 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildReference() throws GooBuilderParseException {
+	public void buildReference() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String refer = builder.buildReference();
 		Assert.assertEquals(
@@ -100,7 +100,7 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildType() throws GooBuilderParseException {
+	public void buildType() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String type = builder.buildType(2);
 		Assert.assertEquals("finance", type);
@@ -108,14 +108,14 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildTypesCount() throws GooBuilderParseException {
+	public void buildTypesCount() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		int countT = builder.buildTypesCount();
 		Assert.assertEquals(4, countT);
 	}
 
 	@Test
-	public void buildId() throws GooBuilderParseException {
+	public void buildId() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildId();
 		Assert.assertEquals("4a40cfdbc9b56427a363c4a2c5aa05eb2c45d7d4", id);
@@ -123,21 +123,21 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildFormattedPhoneNumber() throws GooBuilderParseException {
+	public void buildFormattedPhoneNumber() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildFormattedPhoneNumber();
 		Assert.assertEquals("0444 286311", id);
 	}
 
 	@Test
-	public void buildInternationalPhoneNumber() throws GooBuilderParseException {
+	public void buildInternationalPhoneNumber() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildInternationalPhoneNumber();
 		Assert.assertEquals("+39 0444 286311", id);
 	}
 
 	@Test
-	public void buildUrlGoolge() throws GooBuilderParseException {
+	public void buildUrlGoolge() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildUrlGoolge();
 		Assert.assertEquals(
@@ -146,14 +146,14 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildUrlPlace() throws GooBuilderParseException {
+	public void buildUrlPlace() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildUrlPlace();
 		Assert.assertEquals("http://www.auchan.it/", id);
 	}
 
 	@Test
-	public void buildAddressComponentsCount() throws GooBuilderParseException {
+	public void buildAddressComponentsCount() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		int countT = builder.buildAddressComponentsCount();
 		Assert.assertEquals(7, countT);
@@ -161,7 +161,7 @@ public class XPathDetailsTest {
 
 	@Test
 	public void buildAddressComponentShortValue()
-			throws GooBuilderParseException {
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildAddressComponentShortValue(4);
 		Assert.assertEquals("Veneto", id);
@@ -169,14 +169,14 @@ public class XPathDetailsTest {
 
 	@Test
 	public void buildAddressComponentLongValue()
-			throws GooBuilderParseException {
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildAddressComponentLongValue(3);
 		Assert.assertEquals("Vicenza", id);
 	}
 
 	@Test
-	public void buildAddressComponentType() throws GooBuilderParseException {
+	public void buildAddressComponentType() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildAddressComponentType(2, 0);
 		Assert.assertEquals("locality", id);
@@ -185,7 +185,7 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildFormattedAddress() throws GooBuilderParseException {
+	public void buildFormattedAddress() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildFormattedAddress();
 		Assert.assertEquals("Strada delle Cattane, 71, Vicenza, Italia", id);

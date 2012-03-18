@@ -2,24 +2,24 @@ package com.service.google.places;
 
 import java.util.List;
 
-public class GooPlaceSuggest implements IGooStatus {
+public class GooPlaceSuggest {
 
-	private RequestStatus status;
+	private GooResponseStatus status;
 	private List<GooPlaceSuggestItem> items;
 
-	public RequestStatus getStatus() {
+	public GooResponseStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(RequestStatus status) {
-		this.status = status;
-	}
-
-	public List<GooPlaceSuggestItem> getItems() {
+	 public List<GooPlaceSuggestItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<GooPlaceSuggestItem> items) {
+	 void setStatus(GooResponseStatus status) {
+		this.status = status;
+	}
+
+	 void setItems(List<GooPlaceSuggestItem> items) {
 		this.items = items;
 	}
 

@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.service.google.places.GooBuilderParseException;
+import com.service.google.places.ResponseBuilderParseException;
 import com.service.google.places.IPlaceSuggestBuilder;
 
 public class XPathSuggestTest {
@@ -29,26 +29,26 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void loadStream() throws GooBuilderParseException {
+	public void loadStream() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 	}
 
 	@Test
-	public void buildStatus() throws GooBuilderParseException {
+	public void buildStatus() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String status = builder.buildStatus();
 		Assert.assertEquals("OK", status);
 	}
 
 	@Test
-	public void buildResultsCount() throws GooBuilderParseException {
+	public void buildResultsCount() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		int countR = builder.buildResultsCount();
 		Assert.assertEquals(12, countR);
 	}
 
 	@Test
-	public void buildVicinity() throws GooBuilderParseException {
+	public void buildVicinity() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String vicinity = builder.buildVicinity();
@@ -60,7 +60,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildGeometryLatitude() throws GooBuilderParseException {
+	public void buildGeometryLatitude() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		double value = builder.buildGeometryLatitude();
@@ -71,7 +71,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildGeometryLongitude() throws GooBuilderParseException {
+	public void buildGeometryLongitude() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		double value = builder.buildGeometryLongitude();
@@ -82,7 +82,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildIcon() throws GooBuilderParseException {
+	public void buildIcon() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String icon = builder.buildIcon();
@@ -93,7 +93,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildName() throws GooBuilderParseException {
+	public void buildName() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String name = builder.buildName();
@@ -104,7 +104,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildRating() throws GooBuilderParseException {
+	public void buildRating() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		Double value = builder.buildRating();
@@ -115,7 +115,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildReference() throws GooBuilderParseException {
+	public void buildReference() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String refer = builder.buildReference();
@@ -126,7 +126,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildType() throws GooBuilderParseException {
+	public void buildType() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String type = builder.buildType(0);
@@ -137,7 +137,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildTypesCount() throws GooBuilderParseException {
+	public void buildTypesCount() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(1);
 		int countT =  builder.buildTypesCount();
@@ -145,7 +145,7 @@ public class XPathSuggestTest {
 	}
 
 	@Test
-	public void buildId() throws GooBuilderParseException {
+	public void buildId() throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		builder.setItemId(0);
 		String id = builder.buildId();

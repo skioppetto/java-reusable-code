@@ -1,9 +1,9 @@
 package com.service.google.places;
 
 
-public class GooBuilderParseException extends GooPlacesException {
+public class ResponseBuilderParseException extends PlacesEngineException {
 
-	public GooBuilderParseException(Exception e) {
+	public ResponseBuilderParseException(Exception e) {
 		super (e);
 	}
 
