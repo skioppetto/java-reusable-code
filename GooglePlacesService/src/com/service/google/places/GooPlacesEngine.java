@@ -21,10 +21,21 @@ public class GooPlacesEngine {
 
 	}
 
-	public GooPlaceDetail getDetail(GooDetailParameters parameters) throws PlacesEngineException {
+	public GooPlaceDetail getDetail(GooDetailParameters parameters)
+			throws PlacesEngineException {
 		URL url = urlBuilder.buildPlacesDetailUrl(parameters);
 		InputStream stream = httpHandler.getStream(url);
 		return parser.parseDetailPlace(stream);
+
+	}
+
+	public void setDetailBuilder(IPlaceDetailBuilder builder) {
+		parser.setPlaceDetailBuilder(builder);
+
+	}
+
+	public void setSuggestBuilder(IPlaceSuggestBuilder builder) {
+		parser.setPlaceSuggestBuilder(builder);
 
 	}
 

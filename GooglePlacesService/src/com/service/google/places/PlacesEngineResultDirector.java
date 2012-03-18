@@ -4,13 +4,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.service.google.places.parser.XPathPlaceDetailBuilder;
-import com.service.google.places.parser.XPathPlaceSuggestBuilder;
-
  class PlacesEngineResultDirector {
 
-	private IPlaceSuggestBuilder placeSuggestBuilder = new XPathPlaceSuggestBuilder();
-	private IPlaceDetailBuilder placeDetailBuilder = new XPathPlaceDetailBuilder();
+	private IPlaceSuggestBuilder placeSuggestBuilder ;
+	private IPlaceDetailBuilder placeDetailBuilder ;
 
 	GooPlaceSuggest parseSuggest(InputStream stream)
 			throws ResponseBuilderParseException {

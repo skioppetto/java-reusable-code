@@ -10,18 +10,24 @@ import com.service.google.places.GooPlaceDetail;
 import com.service.google.places.GooPlaceSuggest;
 import com.service.google.places.GooPlaceSuggestItem;
 import com.service.google.places.GooPlacesEngine;
+import com.service.google.places.IPlaceDetailBuilder;
+import com.service.google.places.IPlaceSuggestBuilder;
 import com.service.google.places.PlacesEngineException;
 import com.service.google.places.MyApplicationKey;
 import com.service.google.places.MyLocation;
 import com.service.google.places.GooResponseStatus;
 import com.service.google.places.GooSuggestParameters;
 import com.service.google.places.GooDistance.Unit;
+import com.service.google.places.parser.XPathPlaceDetailBuilder;
+import com.service.google.places.parser.XPathPlaceSuggestBuilder;
 
 public class TestClient {
 
 	GooPlacesEngine engine = new GooPlacesEngine();
 
 	private void testSuggestion(GooPlaceSuggestItem s) {
+		
+		
 		Assert.assertNotNull(s);
 		Assert.assertNotNull(s.getCoordinates());
 		Assert.assertTrue(s.getCoordinates().getLatitude() != 0);
@@ -52,6 +58,10 @@ public class TestClient {
 
 	@Test
 	public void getSuggestionsTest() throws PlacesEngineException {
+		
+		engine.setSuggestBuilder( new XPathPlaceSuggestBuilder());
+		engine.setDetailBuilder (new XPathPlaceDetailBuilder());
+		
 		GooSuggestParameters suggParams = new GooSuggestParameters();
 		suggParams.setCoordinates(MyLocation.location);
 		suggParams.setKey(MyApplicationKey.key);
