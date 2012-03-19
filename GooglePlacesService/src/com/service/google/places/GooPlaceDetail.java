@@ -34,27 +34,27 @@ public class GooPlaceDetail extends GooPlaceSuggestItem
 		return urlGoogle;
 	}
 
-	void setStatus(GooResponseStatus status) {
+	protected void setStatus(GooResponseStatus status) {
 		this.status = status;
 	}
 
-	void setAddress(GooAddress address) {
+	protected void setAddress(GooAddress address) {
 		this.address = address;
 	}
 
-	void setFormattedPhoneNumber(String formattedPhoneNumber) {
+	protected void setFormattedPhoneNumber(String formattedPhoneNumber) {
 		this.formattedPhoneNumber = formattedPhoneNumber;
 	}
 
-	void setInternationalPhoneNumber(String internationalPhoneNumber) {
+	protected void setInternationalPhoneNumber(String internationalPhoneNumber) {
 		this.internationalPhoneNumber = internationalPhoneNumber;
 	}
 
-	void setUrlPlace(String urlPlace) {
+	protected void setUrlPlace(String urlPlace) {
 		this.urlPlace = urlPlace;
 	}
 
-	void setUrlGoogle(String urlGoogle) {
+	protected void setUrlGoogle(String urlGoogle) {
 		this.urlGoogle = urlGoogle;
 	}
 
