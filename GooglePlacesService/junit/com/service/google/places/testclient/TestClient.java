@@ -6,18 +6,16 @@ import org.junit.Test;
 
 import com.service.google.places.GooDetailParameters;
 import com.service.google.places.GooDistance;
+import com.service.google.places.GooDistance.Unit;
 import com.service.google.places.GooPlaceDetail;
 import com.service.google.places.GooPlaceSuggest;
 import com.service.google.places.GooPlaceSuggestItem;
 import com.service.google.places.GooPlacesEngine;
-import com.service.google.places.IPlaceDetailBuilder;
-import com.service.google.places.IPlaceSuggestBuilder;
-import com.service.google.places.PlacesEngineException;
-import com.service.google.places.MyApplicationKey;
-import com.service.google.places.MyLocation;
 import com.service.google.places.GooResponseStatus;
 import com.service.google.places.GooSuggestParameters;
-import com.service.google.places.GooDistance.Unit;
+import com.service.google.places.MyApplicationKey;
+import com.service.google.places.MyLocation;
+import com.service.google.places.PlacesEngineException;
 import com.service.google.places.parser.XPathPlaceDetailBuilder;
 import com.service.google.places.parser.XPathPlaceSuggestBuilder;
 

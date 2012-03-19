@@ -11,7 +11,6 @@ public class HTTPHandlerImpl implements IHttpHandler {
 
 	URLConnection connection = null;
 
-	@Override
 	public InputStream getStream(URL url) {
 		try {
 			connection = url.openConnection();

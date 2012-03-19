@@ -7,7 +7,7 @@ public class GooAddress {
 	private String formattedAddress;
 	private List<GooAddressItem> addressItems;
 
-	protected GooAddress() {
+	 GooAddress() {
 	}
 
 	public String getFormattedAddress() {
@@ -18,11 +18,11 @@ public class GooAddress {
 		return addressItems;
 	}
 
-	 void setFormattedAddress(String formattedAddress) {
+	protected  void setFormattedAddress(String formattedAddress) {
 		this.formattedAddress = formattedAddress;
 	}
 
-	 void setAddressItems(List<GooAddressItem> addressItems) {
+	protected  void setAddressItems(List<GooAddressItem> addressItems) {
 		this.addressItems = addressItems;
 	}
 

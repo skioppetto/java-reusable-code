@@ -10,12 +10,12 @@ public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements
 
 	private int resultId;
 
-	@Override
+	
 	public void setItemId(int resultId) {
 		this.resultId = resultId;
 	}
 
-	@Override
+	
 	public String buildStatus() {
 		try {
 			return (String) xpath.compile("/PlaceSearchResponse/status/text()")
@@ -26,7 +26,7 @@ public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements
 		}
 	}
 
-	@Override
+	
 	public int buildTypesCount() {
 
 		try {

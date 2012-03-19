@@ -8,27 +8,27 @@ import com.service.google.places.IPlaceDetailBuilder;
 public class XPathPlaceDetailBuilder extends XPathPlaceBaseBuilder implements
 		IPlaceDetailBuilder {
 
-	@Override
+	
 	public String buildFormattedPhoneNumber() {
 		return getResultItemString("formatted_phone_number");
 	}
 
-	@Override
+	
 	public String buildInternationalPhoneNumber() {
 		return getResultItemString("international_phone_number");
 	}
 
-	@Override
+	
 	public String buildUrlGoolge() {
 		return getResultItemString("url");
 	}
 
-	@Override
+	
 	public String buildUrlPlace() {
 		return getResultItemString("website");
 	}
 
-	@Override
+	
 	public int buildAddressComponentsCount() {
 		try {
 			return ((Number) xpath.compile(
@@ -40,25 +40,25 @@ public class XPathPlaceDetailBuilder extends XPathPlaceBaseBuilder implements
 		}
 	}
 
-	@Override
+	
 	public String buildAddressComponentShortValue(int i) {
 		return getResultItemString("address_component[" + (i + 1)
 				+ "]/short_name");
 	}
 
-	@Override
+	
 	public String buildAddressComponentLongValue(int i) {
 		return getResultItemString("address_component[" + (i + 1)
 				+ "]/long_name");
 	}
 
-	@Override
+	
 	public String buildAddressComponentType(int i, int j) {
 		return getResultItemString("address_component[" + (i + 1) + "]/type["
 				+ (j + 1) + "]");
 	}
 
-	@Override
+	
 	public int buildAddressComponentTypesCount(int addressId) {
 		try {
 			return ((Number) xpath.compile(
@@ -71,12 +71,12 @@ public class XPathPlaceDetailBuilder extends XPathPlaceBaseBuilder implements
 		}
 	}
 
-	@Override
+	
 	public String buildFormattedAddress() {
 		return getResultItemString("formatted_address");
 	}
 
-	@Override
+	
 	public String buildStatus() {
 		try {
 			return (String) xpath
