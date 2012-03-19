@@ -7,7 +7,7 @@ public class GooAddress {
 	private String formattedAddress;
 	private List<GooAddressItem> addressItems;
 
-	 GooAddress() {
+	protected  GooAddress() {
 	}
 
 	public String getFormattedAddress() {

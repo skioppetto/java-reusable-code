@@ -23,15 +23,15 @@ public class GooAddressItem {
 		return shortValue;
 	}
 
-	 void setTypes(List<GooPlacesType> type) {
+	protected void setTypes(List<GooPlacesType> type) {
 		this.types = type;
 	}
 
-	 void setValue(String value) {
+	protected void setValue(String value) {
 		this.value = value;
 	}
 
-	 void setShort(String shortVal) {
+	protected void setShort(String shortVal) {
 		this.shortValue = shortVal;
 	}
 
