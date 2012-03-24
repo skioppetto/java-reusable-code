@@ -1,12 +1,12 @@
 package com.service.google.places;
 
- class PlacesEngineRequestParameters {
+ public class PlacesEngineRequestParameters {
 
 	private Boolean fromDeviceUsingSensor;
 	private GooLanguage language;
 	private String key;
 
-	public PlacesEngineRequestParameters() {
+	 PlacesEngineRequestParameters() {
 		super();
 	}
 

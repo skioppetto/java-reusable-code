@@ -15,11 +15,11 @@ public class GooPlaceSuggest {
 		return items;
 	}
 
-	 void setStatus(GooResponseStatus status) {
+	 protected  void setStatus(GooResponseStatus status) {
 		this.status = status;
 	}
 
-	 void setItems(List<GooPlaceSuggestItem> items) {
+	 protected  void setItems(List<GooPlaceSuggestItem> items) {
 		this.items = items;
 	}
 

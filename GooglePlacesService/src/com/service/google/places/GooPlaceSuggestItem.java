@@ -45,35 +45,35 @@ public class GooPlaceSuggestItem {
 		return uid;
 	}
 
-	void setName(String name) {
+	protected void setName(String name) {
 		this.name = name;
 	}
 
-	 void setSimplifiedAddress(String addressFormatted) {
+	protected  void setSimplifiedAddress(String addressFormatted) {
 		this.simplifiedAddress = addressFormatted;
 	}
 
-	 void setTypes(List<GooPlacesType> types) {
+	protected  void setTypes(List<GooPlacesType> types) {
 		this.types = types;
 	}
 
-	 void setCoordinates(GooCoordinates coordinates) {
+	protected  void setCoordinates(GooCoordinates coordinates) {
 		this.coordinates = coordinates;
 	}
 
-	 void setRating(Double rating) {
+	protected  void setRating(Double rating) {
 		this.rating = rating;
 	}
 
-	 void setIcon(String icon) {
+	protected  void setIcon(String icon) {
 		this.icon = icon;
 	}
 
-	 void setReference(String reference) {
+	protected  void setReference(String reference) {
 		this.reference = reference;
 	}
 
-	 void setUid(String uid) {
+	protected  void setUid(String uid) {
 		this.uid = uid;
 	}
 
