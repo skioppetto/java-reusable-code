@@ -5,7 +5,7 @@ import java.net.URL;
 
 import com.service.google.places.http.HTTPHandlerImpl;
 
-public class GooPlacesEngine {
+public class GooPlacesEngine implements IGooPlaceEngine {
 
 	private PlacesEngineUrlBuilder urlBuilder = new PlacesEngineUrlBuilder(
 			GooOutputType.xml);
@@ -34,6 +34,10 @@ public class GooPlacesEngine {
 	public void setSuggestBuilder(IPlaceSuggestBuilder builder) {
 		parser.setPlaceSuggestBuilder(builder);
 
+	}
+
+	public void setPlaceDetailFactory(PlaceDetailFactory factory) {
+		parser.setDetailFactory(factory);
 	}
 
 }

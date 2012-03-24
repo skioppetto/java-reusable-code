@@ -8,6 +8,7 @@ import java.util.List;
 
 	private IPlaceSuggestBuilder placeSuggestBuilder ;
 	private IPlaceDetailBuilder placeDetailBuilder ;
+	private PlaceDetailFactory detailFactory = new PlaceDetailFactory();
 
 	GooPlaceSuggest parseSuggest(InputStream stream)
 			throws ResponseBuilderParseException {
@@ -34,7 +35,7 @@ import java.util.List;
 	GooPlaceDetail parseDetailPlace(InputStream stream)
 			throws ResponseBuilderParseException {
 		placeDetailBuilder.openStream(stream);
-		GooPlaceDetail detail = new GooPlaceDetail();
+		GooPlaceDetail detail = getDetailFactory().createGooPlaceDetail();
 		GooResponseStatus status = GooResponseStatus.valueOf(placeDetailBuilder
 				.buildStatus());
 		detail.setStatus(status);
@@ -48,10 +49,10 @@ import java.util.List;
 		detail.setUrlGoogle(placeDetailBuilder.buildUrlGoolge());
 		detail.setUrlPlace(placeDetailBuilder.buildUrlPlace());
 
-		GooAddress address = new GooAddress();
+		GooAddress address = getDetailFactory().createGooPlaceAddress();
 		List<GooAddressItem> items = new ArrayList<GooAddressItem>();
 		for (int i = 0; i < placeDetailBuilder.buildAddressComponentsCount(); i++) {
-			GooAddressItem item = new GooAddressItem();
+			GooAddressItem item = getDetailFactory().createGooAddressItem();
 			item.setTypes(new ArrayList<GooPlacesType>());
 			for (int j = 0; j < placeDetailBuilder
 					.buildAddressComponentTypesCount(i); j++)
@@ -102,6 +103,14 @@ import java.util.List;
 
 	void setPlaceDetailBuilder(IPlaceDetailBuilder placeDetailBuilder) {
 		this.placeDetailBuilder = placeDetailBuilder;
+	}
+
+	public PlaceDetailFactory getDetailFactory() {
+		return detailFactory;
+	}
+
+	public void setDetailFactory(PlaceDetailFactory detailFactory) {
+		this.detailFactory = detailFactory;
 	}
 
 }
