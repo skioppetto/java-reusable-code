@@ -2,22 +2,23 @@ package com.service.google.places.testclient;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import com.service.google.places.GooDetailParameters;
-import com.service.google.places.GooDistance;
-import com.service.google.places.GooDistance.Unit;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.GooPlaceSuggest;
-import com.service.google.places.GooPlaceSuggestItem;
 import com.service.google.places.GooPlacesEngine;
-import com.service.google.places.GooResponseStatus;
-import com.service.google.places.GooSuggestParameters;
-import com.service.google.places.MyApplicationKey;
-import com.service.google.places.MyLocation;
 import com.service.google.places.PlacesEngineException;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlaceSuggest;
+import com.service.google.places.model.GooPlaceSuggestItem;
+import com.service.google.places.model.GooResponseStatus;
+import com.service.google.places.model.MyApplicationKey;
+import com.service.google.places.model.MyLocation;
 import com.service.google.places.parser.XPathPlaceDetailBuilder;
 import com.service.google.places.parser.XPathPlaceSuggestBuilder;
+import com.service.google.places.request.GooDetailParameters;
+import com.service.google.places.request.GooDistance;
+import com.service.google.places.request.GooSuggestParameters;
+import com.service.google.places.request.GooDistance.Unit;
 
 public class TestClient {
 
@@ -54,11 +55,15 @@ public class TestClient {
 		// TODO:
 	}
 
-	@Test
-	public void getSuggestionsTest() throws PlacesEngineException {
-		
+	@Before
+	public void init(){
 		engine.setSuggestBuilder( new XPathPlaceSuggestBuilder());
 		engine.setDetailBuilder (new XPathPlaceDetailBuilder());
+	}
+	
+	@Test
+	public void getSuggestionsAndDetailsTest() throws PlacesEngineException {
+		
 		
 		GooSuggestParameters suggParams = new GooSuggestParameters();
 		suggParams.setCoordinates(MyLocation.location);
@@ -77,7 +82,32 @@ public class TestClient {
 			GooPlaceDetail det = engine.getDetail(detPar);
 			testDetail(det);
 		}
-
+	}
+	
+	@Test
+	public void testJsonSuggestResult () throws PlacesEngineException{
+		GooSuggestParameters suggParams = new GooSuggestParameters();
+		suggParams.setCoordinates(MyLocation.location);
+		suggParams.setKey(MyApplicationKey.key);
+		suggParams.setFromDeviceUsingSensor(false);
+		suggParams.setRadius(new GooDistance(1000, Unit.Meters));
+		String suggests = engine.suggestPlacesJson(suggParams);
+		Assert.assertNotNull(suggests);
+		Assert.assertTrue(suggests.contains("\"name\" : \"Pyrmont\""));
+		
+	}
+	
+	@Test
+	public void testXmlSuggestResult () throws PlacesEngineException{
+		GooSuggestParameters suggParams = new GooSuggestParameters();
+		suggParams.setCoordinates(MyLocation.location);
+		suggParams.setKey(MyApplicationKey.key);
+		suggParams.setFromDeviceUsingSensor(false);
+		suggParams.setRadius(new GooDistance(1000, Unit.Meters));
+		String suggests = engine.suggestPlacesXml(suggParams);
+		Assert.assertNotNull(suggests);
+		Assert.assertTrue(suggests.contains("<name>Pyrmont</name>"));
+		
 	}
 
 }

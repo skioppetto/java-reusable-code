@@ -1,24 +1,27 @@
 package com.service.google.places.dao;
 
 import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Node;
 
-import com.service.google.places.GooAddress;
-import com.service.google.places.GooAddressItem;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.PlaceDetailFactory;
+import com.service.google.places.builder.PlaceDetailFactory;
+import com.service.google.places.model.GooAddress;
+import com.service.google.places.model.GooAddressItem;
+import com.service.google.places.model.GooPlaceDetail;
 
 public class PlaceDetailNodeFactory extends PlaceDetailFactory {
 
-	private GraphDbTxManager manager;
-	
-	public PlaceDetailNodeFactory(GraphDbTxManager tx) {
-		this.manager = tx;
+	private GraphDatabaseService graphDb;
+
+	public PlaceDetailNodeFactory(GraphDatabaseService graphDb) {
+		this.graphDb = graphDb;
 	}
 
 	@Override
-	public GooPlaceDetail createGooPlaceDetail() {
-		manager.beginOrAppendToTx();
-		return new GooPlaceNode(manager.getGraphDb().createNode());
+	public GooPlaceDetail createGooPlaceDetail(String key) {
+		GraphDbTxManager.getInstance().beginOrAppendToTx(graphDb);
+		Node node = GooPlaceIndexes.getInstance()
+				.findGooPlaceNode(key, graphDb);
+		return new GooPlaceNode((node == null) ? graphDb.createNode() : node);
 	}
 
 	@Override
@@ -27,9 +30,12 @@ public class PlaceDetailNodeFactory extends PlaceDetailFactory {
 	}
 
 	@Override
-	public GooAddressItem createGooAddressItem() {
-		manager.beginOrAppendToTx();
-		return new GooAddressItemNode(manager.getGraphDb().createNode());
+	public GooAddressItem createGooAddressItem(String key) {
+		GraphDbTxManager.getInstance().beginOrAppendToTx(graphDb);
+		Node node = GooPlaceIndexes.getInstance().findAddressItemNode(key,
+				graphDb);
+		return new GooAddressItemNode((node == null) ? graphDb.createNode()
+				: node);
 	}
 
 }

@@ -8,7 +8,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.service.google.places.IHttpHandler;
 
 public class HTTPHandlerTest {
 

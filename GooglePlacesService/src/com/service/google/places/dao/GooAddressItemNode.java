@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.neo4j.graphdb.Node;
 
-import com.service.google.places.GooAddressItem;
-import com.service.google.places.GooPlacesType;
+import com.service.google.places.model.GooAddressItem;
+import com.service.google.places.model.GooPlacesType;
 
 public class GooAddressItemNode extends GooAddressItem {
 
-	private static final String LONG_VALUE = "longValue";
-	private static final String SHORT_VALUE = "shortValue";
+	static final String LONG_VALUE = "longValue";
+	static final String SHORT_VALUE = "shortValue";
 	private Node underlyingNode;
 
 	public GooAddressItemNode(Node underlyingNode) {
@@ -35,12 +35,12 @@ public class GooAddressItemNode extends GooAddressItem {
 	}
 
 	@Override
-	protected void setValue(String value) {
+	public void setValue(String value) {
 		underlyingNode.setProperty(LONG_VALUE, value);
 	}
 
 	@Override
-	protected void setShort(String shortVal) {
+	public void setShort(String shortVal) {
 		underlyingNode.setProperty(SHORT_VALUE, shortVal);
 	}
 
@@ -50,7 +50,7 @@ public class GooAddressItemNode extends GooAddressItem {
 	}
 
 	@Override
-	protected void setTypes(List<GooPlacesType> type) {
+	public void setTypes(List<GooPlacesType> type) {
 		super.setTypes(type);
 	}
 

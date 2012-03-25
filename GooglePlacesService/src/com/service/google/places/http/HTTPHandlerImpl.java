@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.service.google.places.IHttpHandler;
 
 public class HTTPHandlerImpl implements IHttpHandler {
 

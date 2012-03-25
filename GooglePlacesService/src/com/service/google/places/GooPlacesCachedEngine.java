@@ -1,5 +1,13 @@
 package com.service.google.places;
 
+import com.service.google.places.builder.PlaceDetailFactory;
+import com.service.google.places.dao.IGooPlacesDao;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlaceSuggest;
+import com.service.google.places.request.GooDetailParameters;
+import com.service.google.places.request.GooPlaceCachedParameters;
+import com.service.google.places.request.GooSuggestParameters;
+
 public class GooPlacesCachedEngine implements IGooPlaceEngine {
 
 	private IGooPlacesDao dao;
@@ -15,10 +23,10 @@ public class GooPlacesCachedEngine implements IGooPlaceEngine {
 		return engine.suggestPlaces(parameters);
 	}
 
-	public GooPlaceDetail getDetail(GooPlaceCachedParameters parameters)
+	public GooPlaceDetail getCachedDetail(GooPlaceCachedParameters parameters)
 			throws PlacesEngineException {
 		GooPlaceDetail detail = dao.getByUid(parameters.getUid());
-		if (detail == null){
+		if (detail == null) {
 			return getDetail((GooDetailParameters) parameters);
 		}
 		return detail;
@@ -29,6 +37,26 @@ public class GooPlacesCachedEngine implements IGooPlaceEngine {
 		GooPlaceDetail detail = engine.getDetail(parameters);
 		getDao().save(detail);
 		return detail;
+	}
+
+	public String suggestPlacesJson(GooSuggestParameters parameters)
+			throws PlacesEngineException {
+		return engine.suggestPlacesJson(parameters);
+	}
+
+	public String suggestPlacesXml(GooSuggestParameters parameters)
+			throws PlacesEngineException {
+		return engine.suggestPlacesXml(parameters);
+	}
+
+	public String getDetailJson(GooDetailParameters parameters)
+			throws PlacesEngineException {
+		return engine.getDetailJson(parameters);
+	}
+
+	public String getDetailXml(GooDetailParameters parameters)
+			throws PlacesEngineException {
+		return engine.getDetailXml(parameters);
 	}
 
 	public void setPlaceDetailFactory(PlaceDetailFactory factory) {

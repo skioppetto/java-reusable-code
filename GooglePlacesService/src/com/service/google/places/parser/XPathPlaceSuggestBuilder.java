@@ -3,7 +3,7 @@ package com.service.google.places.parser;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 
-import com.service.google.places.IPlaceSuggestBuilder;
+import com.service.google.places.builder.IPlaceSuggestBuilder;
 
 public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements
 		IPlaceSuggestBuilder {

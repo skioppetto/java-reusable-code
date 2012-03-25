@@ -12,8 +12,8 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.service.google.places.IPlaceSuggestItemBuilder;
-import com.service.google.places.ResponseBuilderParseException;
+import com.service.google.places.builder.IPlaceSuggestItemBuilder;
+import com.service.google.places.builder.ResponseBuilderParseException;
 
  abstract class XPathPlaceBaseBuilder implements IPlaceSuggestItemBuilder{
 

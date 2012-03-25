@@ -9,8 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.service.google.places.ResponseBuilderParseException;
-import com.service.google.places.IPlaceDetailBuilder;
+import com.service.google.places.builder.IPlaceDetailBuilder;
+import com.service.google.places.builder.ResponseBuilderParseException;
 
 public class XPathDetailsTest {
 

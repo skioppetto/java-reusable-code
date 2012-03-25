@@ -8,9 +8,9 @@ import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.test.ImpermanentGraphDatabase;
 
-import com.service.google.places.GooAddressItem;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.GooPlacesType;
+import com.service.google.places.model.GooAddressItem;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlacesType;
 
 public class GooPlaceDetailNeo4jBuildTest {
 

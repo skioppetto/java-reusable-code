@@ -9,8 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.service.google.places.ResponseBuilderParseException;
-import com.service.google.places.IPlaceSuggestBuilder;
+import com.service.google.places.builder.IPlaceSuggestBuilder;
+import com.service.google.places.builder.ResponseBuilderParseException;
 
 public class XPathSuggestTest {
 

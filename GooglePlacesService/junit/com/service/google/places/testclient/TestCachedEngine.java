@@ -2,46 +2,52 @@ package com.service.google.places.testclient;
 
 import junit.framework.Assert;
 
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.test.ImpermanentGraphDatabase;
+import org.neo4j.kernel.EmbeddedGraphDatabase;
 
-import com.service.google.places.GooDistance;
-import com.service.google.places.GooDistance.Unit;
-import com.service.google.places.GooPlaceCachedParameters;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.GooPlaceSuggest;
-import com.service.google.places.GooPlaceSuggestItem;
 import com.service.google.places.GooPlacesCachedEngine;
 import com.service.google.places.GooPlacesEngine;
-import com.service.google.places.GooResponseStatus;
-import com.service.google.places.GooSuggestParameters;
-import com.service.google.places.IGooPlacesDao;
-import com.service.google.places.MyApplicationKey;
-import com.service.google.places.MyLocation;
 import com.service.google.places.PlacesEngineException;
 import com.service.google.places.dao.GooPlacesDaoImpl;
-import com.service.google.places.dao.GraphDbTxManager;
+import com.service.google.places.dao.IGooPlacesDao;
 import com.service.google.places.dao.PlaceDetailNodeFactory;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlaceSuggest;
+import com.service.google.places.model.GooPlaceSuggestItem;
+import com.service.google.places.model.GooResponseStatus;
+import com.service.google.places.model.MyApplicationKey;
+import com.service.google.places.model.MyLocation;
 import com.service.google.places.parser.XPathPlaceDetailBuilder;
 import com.service.google.places.parser.XPathPlaceSuggestBuilder;
+import com.service.google.places.request.GooDistance;
+import com.service.google.places.request.GooPlaceCachedParameters;
+import com.service.google.places.request.GooSuggestParameters;
+import com.service.google.places.request.GooDistance.Unit;
 
 public class TestCachedEngine {
 
-	static GooPlacesCachedEngine cachedEngine;
+	GooPlacesCachedEngine cachedEngine;
+	private GraphDatabaseService db;
 
-	@BeforeClass
-	public static void initBeans() {
+	@Before
+	public void initBeans() {
 		GooPlacesEngine engine = new GooPlacesEngine();
-		GraphDatabaseService gDb = new ImpermanentGraphDatabase();
-		GraphDbTxManager tx = new GraphDbTxManager(gDb);
-		IGooPlacesDao dao = new GooPlacesDaoImpl(tx);
-		engine.setPlaceDetailFactory(new PlaceDetailNodeFactory(tx));
+		GraphDatabaseService gDb = new EmbeddedGraphDatabase("test-db");
+		db = gDb;
+		IGooPlacesDao dao = new GooPlacesDaoImpl(db);
+		engine.setPlaceDetailFactory(new PlaceDetailNodeFactory(db));
 		engine.setSuggestBuilder(new XPathPlaceSuggestBuilder());
 		engine.setDetailBuilder(new XPathPlaceDetailBuilder());
 		cachedEngine = new GooPlacesCachedEngine(engine, dao);
 
+	}
+
+	@After
+	public void closeDb() {
+		db.shutdown();
 	}
 
 	@Test
@@ -60,7 +66,7 @@ public class TestCachedEngine {
 			detPar.setKey(MyApplicationKey.key);
 			detPar.setReference(s.getReference());
 			detPar.setUid(s.getUid());
-			GooPlaceDetail det = cachedEngine.getDetail(detPar);
+			GooPlaceDetail det = cachedEngine.getCachedDetail(detPar);
 			Assert.assertEquals(det, cachedEngine.getByUid(s.getUid()));
 		}
 	}

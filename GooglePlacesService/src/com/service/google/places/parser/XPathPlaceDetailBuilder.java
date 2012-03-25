@@ -3,7 +3,7 @@ package com.service.google.places.parser;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 
-import com.service.google.places.IPlaceDetailBuilder;
+import com.service.google.places.builder.IPlaceDetailBuilder;
 
 public class XPathPlaceDetailBuilder extends XPathPlaceBaseBuilder implements
 		IPlaceDetailBuilder {

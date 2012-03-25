@@ -3,23 +3,15 @@ package com.service.google.places.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Relationship;
-import org.neo4j.graphdb.RelationshipType;
 
-import com.service.google.places.GooAddress;
-import com.service.google.places.GooAddressItem;
-import com.service.google.places.GooCoordinates;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.GooPlacesType;
-import com.service.google.places.GooResponseStatus;
+import com.service.google.places.model.GooAddress;
+import com.service.google.places.model.GooCoordinates;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlacesType;
+import com.service.google.places.model.GooResponseStatus;
 
 public class GooPlaceNode extends GooPlaceDetail {
-
-	private static enum LocationType implements RelationshipType {
-		LOCATED
-	}
 
 	static final String STATUS = "status";
 	static final String FORMATTED_PHONE_NUMBER = "formattedPhoneNumber";
@@ -35,12 +27,11 @@ public class GooPlaceNode extends GooPlaceDetail {
 	static final String REFERENCE = "reference";
 	static final String UID = "uid";
 	static final String TYPES = "types";
-	private static final String FORMATTED_ADDRESS = "formattedAddress";
-	private static final String LOCATE_TYPES = "types";
+	static final String FORMATTED_ADDRESS = "formattedAddress";
 
 	private Node underlyingNode;
 
-	public GooPlaceNode(Node node) {
+	GooPlaceNode(Node node) {
 		this.underlyingNode = node;
 	}
 
@@ -59,18 +50,8 @@ public class GooPlaceNode extends GooPlaceDetail {
 	@Override
 	public GooAddress getAddress() {
 		String address = (String) underlyingNode.getProperty(FORMATTED_ADDRESS);
-		List<GooAddressItem> items = new ArrayList<GooAddressItem>();
-		Iterable<Relationship> addrItems = underlyingNode.getRelationships(
-				LocationType.LOCATED, Direction.OUTGOING);
-		for (Relationship r : addrItems) {
-			GooAddressItemNode item = new GooAddressItemNode(r.getEndNode());
-			item.setTypes(new ArrayList<GooPlacesType>());
-			for (String s : (String[]) r.getProperty(LOCATE_TYPES))
-				item.getTypes().add(GooPlacesType.valueOf(s));
-			items.add(item);
-
-		}
-		return new GooAddressWrapper(address, items);
+		return new GooAddressWrapper(address, GooPlaceRelations.getInstace()
+				.nodeToAddressItemList(this));
 	}
 
 	@Override
@@ -135,61 +116,53 @@ public class GooPlaceNode extends GooPlaceDetail {
 	}
 
 	@Override
-	protected void setStatus(GooResponseStatus status) {
+	public void setStatus(GooResponseStatus status) {
 		underlyingNode.setProperty(STATUS, status.toString());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	protected void setAddress(GooAddress address) {
+	public void setAddress(GooAddress address) {
 		underlyingNode.setProperty(FORMATTED_ADDRESS,
 				address.getFormattedAddress());
-		for (GooAddressItem r : address.getAddressItems()) {
-			GooAddressItemNode itm = new GooAddressItemNode(underlyingNode
-					.getGraphDatabase().createNode(), r);
-			Relationship rel = underlyingNode.createRelationshipTo(
-					itm.getUnderlyingNode(), LocationType.LOCATED);
-			String[] locTypes = new String[r.getTypes().size()];
-			int i = 0;
-			for (GooPlacesType t : r.getTypes())
-				locTypes[i++] = t.toString();
-			rel.setProperty(LOCATE_TYPES, locTypes);
-		}
+		GooPlaceRelations.getInstace().buildRelations(this,
+				(List<GooAddressItemNode>) address.getAddressItems());
 	}
 
 	@Override
-	protected void setFormattedPhoneNumber(String formattedPhoneNumber) {
+	public void setFormattedPhoneNumber(String formattedPhoneNumber) {
 		underlyingNode
 				.setProperty(FORMATTED_PHONE_NUMBER, formattedPhoneNumber);
 	}
 
 	@Override
-	protected void setInternationalPhoneNumber(String internationalPhoneNumber) {
+	public void setInternationalPhoneNumber(String internationalPhoneNumber) {
 		underlyingNode.setProperty(INTERNATIONAL_PHONE_NUMBER,
 				internationalPhoneNumber);
 	}
 
 	@Override
-	protected void setUrlPlace(String urlPlace) {
+	public void setUrlPlace(String urlPlace) {
 		underlyingNode.setProperty(URL_PLACE, urlPlace);
 	}
 
 	@Override
-	protected void setUrlGoogle(String urlGoogle) {
+	public void setUrlGoogle(String urlGoogle) {
 		underlyingNode.setProperty(URL_GOOGLE, urlGoogle);
 	}
 
 	@Override
-	protected void setName(String name) {
+	public void setName(String name) {
 		underlyingNode.setProperty(NAME, name);
 	}
 
 	@Override
-	protected void setSimplifiedAddress(String addressFormatted) {
+	public void setSimplifiedAddress(String addressFormatted) {
 		underlyingNode.setProperty(VICINITY, addressFormatted);
 	}
 
 	@Override
-	protected void setTypes(List<GooPlacesType> types) {
+	public void setTypes(List<GooPlacesType> types) {
 		String[] array = new String[types.size()];
 		int i = 0;
 		for (GooPlacesType p : types)
@@ -198,7 +171,7 @@ public class GooPlaceNode extends GooPlaceDetail {
 	}
 
 	@Override
-	protected void setCoordinates(GooCoordinates coordinates) {
+	public void setCoordinates(GooCoordinates coordinates) {
 		underlyingNode.setProperty(COORDINATES_LATITUDE,
 				coordinates.getLatitude());
 		underlyingNode.setProperty(COORDINATES_LONGITUDE,
@@ -206,22 +179,22 @@ public class GooPlaceNode extends GooPlaceDetail {
 	}
 
 	@Override
-	protected void setRating(Double rating) {
+	public void setRating(Double rating) {
 		underlyingNode.setProperty(RATING, (rating != null) ? rating : 0);
 	}
 
 	@Override
-	protected void setIcon(String icon) {
+	public void setIcon(String icon) {
 		underlyingNode.setProperty(ICON, icon);
 	}
 
 	@Override
-	protected void setReference(String reference) {
+	public void setReference(String reference) {
 		underlyingNode.setProperty(REFERENCE, reference);
 	}
 
 	@Override
-	protected void setUid(String uid) {
+	public void setUid(String uid) {
 		underlyingNode.setProperty(UID, uid);
 	}
 

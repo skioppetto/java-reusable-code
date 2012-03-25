@@ -4,12 +4,12 @@ import java.util.List;
 
 import scala.actors.threadpool.Arrays;
 
-import com.service.google.places.GooAddress;
-import com.service.google.places.GooAddressItem;
-import com.service.google.places.GooCoordinates;
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.GooPlacesType;
-import com.service.google.places.GooResponseStatus;
+import com.service.google.places.model.GooAddress;
+import com.service.google.places.model.GooAddressItem;
+import com.service.google.places.model.GooCoordinates;
+import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.model.GooPlacesType;
+import com.service.google.places.model.GooResponseStatus;
 
 class GooPlaceAddressItemTest extends GooAddressItem {
 

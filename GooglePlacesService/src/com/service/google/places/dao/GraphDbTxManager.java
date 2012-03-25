@@ -1,46 +1,51 @@
 package com.service.google.places.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
 
 public class GraphDbTxManager {
 
-	private GraphDatabaseService graphDb;
-	private Transaction tx;
+	private Map<GraphDatabaseService, Transaction> txMap = new HashMap<GraphDatabaseService, Transaction>();
 
-	public GraphDbTxManager(GraphDatabaseService graphDb) {
+	private GraphDbTxManager() {
 		super();
-		this.setGraphDb(graphDb);
-
+	}
+	
+	private static GraphDbTxManager instance = null;
+	
+	public static GraphDbTxManager getInstance(){
+		if (instance == null)
+			instance = new GraphDbTxManager();
+		return instance;
 	}
 
-	public void beginOrAppendToTx() {
-		if (tx == null)
-			tx = getGraphDb().beginTx();
+	public void beginOrAppendToTx(GraphDatabaseService graphDb) {
+		Transaction tx;
+		if ((tx = txMap.get(graphDb)) == null) {
+			tx = graphDb.beginTx();
+			txMap.put(graphDb, tx);
+		}
 	}
 
-	public void commiTx() {
-		if (tx != null) {
+	public void commiTx(GraphDatabaseService graphDb) {
+		Transaction tx;
+		if ((tx = txMap.get(graphDb)) != null) {
 			tx.success();
 			tx.finish();
-			tx = null;
+			txMap.remove(graphDb);
 		}
 	}
 
-	public void rollbackTx() {
-		if (tx != null) {
+	public void rollbackTx(GraphDatabaseService graphDb) {
+		Transaction tx;
+		if ((tx = txMap.get(graphDb)) != null) {
 			tx.failure();
 			tx.success();
-			tx = null;
+			txMap.remove(graphDb);
 		}
-	}
-
-	public GraphDatabaseService getGraphDb() {
-		return graphDb;
-	}
-
-	public void setGraphDb(GraphDatabaseService graphDb) {
-		this.graphDb = graphDb;
 	}
 
 }

@@ -2,12 +2,11 @@ package com.service.google.places.dao;
 
 import java.util.List;
 
-import com.service.google.places.GooAddress;
-import com.service.google.places.GooAddressItem;
+import com.service.google.places.model.GooAddress;
 
 public class GooAddressWrapper extends GooAddress {
 
-	public GooAddressWrapper(String address, List<GooAddressItem> items) {
+	public GooAddressWrapper(String address, List<GooAddressItemNode> items) {
 		setAddressItems(items);
 		setFormattedAddress(address);
 	}
@@ -16,4 +15,5 @@ public class GooAddressWrapper extends GooAddress {
 		
 	}
 
+		
 }

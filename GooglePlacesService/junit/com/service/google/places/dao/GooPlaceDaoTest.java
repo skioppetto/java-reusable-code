@@ -9,8 +9,7 @@ import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.test.ImpermanentGraphDatabase;
 
-import com.service.google.places.GooPlaceDetail;
-import com.service.google.places.IGooPlacesDao;
+import com.service.google.places.model.GooPlaceDetail;
 
 public class GooPlaceDaoTest {
 
@@ -21,8 +20,7 @@ public class GooPlaceDaoTest {
 	@Before
 	public void prepareTestDatabase() {
 		graphDb = new ImpermanentGraphDatabase();
-		GraphDbTxManager txManager = new GraphDbTxManager(graphDb);
-		dao = new GooPlacesDaoImpl(txManager);
+		dao = new GooPlacesDaoImpl(graphDb);
 	}
 
 	@After
