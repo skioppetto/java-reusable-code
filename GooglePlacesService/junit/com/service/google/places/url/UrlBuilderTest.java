@@ -123,7 +123,7 @@ public class UrlBuilderTest {
 		params.setFromDeviceUsingSensor(false);
 		params.setRadius(new GooDistance(1000, Unit.Meters));
 		params.setLanguage(GooLanguage.ITALIAN);
-		params.setTypes(Arrays.asList(
+		params.setIncludedTypes(Arrays.asList(
 				GooPlacesType.administrative_area_level_1,
 				GooPlacesType.airport));
 		params.setAllFieldsSearchTerm("testKey");

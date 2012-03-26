@@ -23,7 +23,7 @@ public class GooPlacesCachedEngine implements IGooPlaceEngine {
 		return engine.suggestPlaces(parameters);
 	}
 
-	public GooPlaceDetail getCachedDetail(GooPlaceCachedParameters parameters)
+	public GooPlaceDetail getOrCacheDetail(GooPlaceCachedParameters parameters)
 			throws PlacesEngineException {
 		GooPlaceDetail detail = dao.getByUid(parameters.getUid());
 		if (detail == null) {

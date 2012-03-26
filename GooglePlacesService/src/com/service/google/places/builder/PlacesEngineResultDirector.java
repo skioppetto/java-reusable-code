@@ -18,7 +18,7 @@ public class PlacesEngineResultDirector {
 	private IPlaceSuggestBuilder placeSuggestBuilder;
 	private IPlaceDetailBuilder placeDetailBuilder;
 	private PlaceDetailFactory detailFactory = new PlaceDetailFactory();
-
+	
 	public GooPlaceSuggest parseSuggest(InputStream stream)
 			throws ResponseBuilderParseException {
 
@@ -72,7 +72,7 @@ public class PlacesEngineResultDirector {
 				item.getTypes().add(
 						GooPlacesType.valueOf(placeDetailBuilder
 								.buildAddressComponentType(i, j)));
-			item.setValue(key);
+			item.setValue(itemkey);
 			item.setShort(placeDetailBuilder.buildAddressComponentShortValue(i));
 			items.add(item);
 		}

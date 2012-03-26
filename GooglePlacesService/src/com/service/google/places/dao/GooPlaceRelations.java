@@ -14,6 +14,7 @@ import com.service.google.places.model.GooPlacesType;
 public class GooPlaceRelations {
 
 	static final GooPlacesType[] politicalContainersOrder = new GooPlacesType[] {
+			GooPlacesType.route, 
 			GooPlacesType.sublocality_level_5,
 			GooPlacesType.sublocality_level_4,
 			GooPlacesType.sublocality_level_3,
@@ -52,8 +53,7 @@ public class GooPlaceRelations {
 		return items;
 	}
 
-	public void buildRelations(GooPlaceNode node,
-			List<GooAddressItemNode> items) {
+	public void buildRelations(GooPlaceNode node, List<GooAddressItemNode> items) {
 		List<GooAddressItemNode> notNullTypes = new ArrayList<GooAddressItemNode>();
 		for (GooAddressItemNode itm : items) {
 			Relationship rel = node.getUnderlyingNode().createRelationshipTo(
@@ -66,23 +66,36 @@ public class GooPlaceRelations {
 				int idx = Arrays.asList(politicalContainersOrder).indexOf(t);
 				if (idx >= 0) {
 					notNullTypes.add(itm);
-					/* add value to index */
-					GooPlaceIndexes.getInstance().addAddressItemIndex(
-							itm.getUnderlyingNode());
-
 				}
+				/* add value to index */
+				GooPlaceIndexes.getInstance().addAddressItemIndex(
+						itm.getUnderlyingNode());
 			}
 			rel.setProperty(AddressItemRelations.PLACE_IS_LOCATED.toString(),
 					locTypes);
 		}
 		/* build relations between address political items */
-		for (int j = 0; j < notNullTypes.size() - 1; j++) {
-			notNullTypes
+		for (int j = notNullTypes.size() - 1; j > 0; j--) {
+			boolean exists = false;
+			Iterable<Relationship> rels = notNullTypes
 					.get(j)
 					.getUnderlyingNode()
-					.createRelationshipTo(
-							notNullTypes.get(j + 1).getUnderlyingNode(),
-							AddressItemRelations.LOCATION_CONTAINS);
+					.getRelationships(AddressItemRelations.LOCATION_CONTAINS,
+							Direction.OUTGOING);
+			for (Relationship r : rels) {
+				if (r.getEndNode().equals(
+						notNullTypes.get(j-1).getUnderlyingNode())) {
+					exists = true;
+					break;
+				}
+			}
+			if (!exists)
+				notNullTypes
+						.get(j)
+						.getUnderlyingNode()
+						.createRelationshipTo(
+								notNullTypes.get(j - 1).getUnderlyingNode(),
+								AddressItemRelations.LOCATION_CONTAINS);
 
 		}
 

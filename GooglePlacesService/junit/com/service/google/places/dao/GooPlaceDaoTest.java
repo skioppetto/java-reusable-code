@@ -55,7 +55,6 @@ public class GooPlaceDaoTest {
 		dao.save(data);
 
 		GooPlaceDetail loaded = dao.getByUid(data.getUid());
-		// GooPlaceDetail loaded = new GooPlaceNode(graphDb.getNodeById(id));
 		Assert.assertNotNull(loaded);
 		Assert.assertEquals(data.getName(), loaded.getName());
 		Assert.assertEquals(data.getFormattedPhoneNumber(),
@@ -73,6 +72,14 @@ public class GooPlaceDaoTest {
 				.getAddress().getFormattedAddress());
 		Assert.assertEquals(data.getAddress().getAddressItems().size(), loaded
 				.getAddress().getAddressItems().size());
+		for (int i = 0; i < data.getAddress().getAddressItems().size(); i++) {
+			Assert.assertEquals(data.getAddress().getAddressItems().get(i)
+					.getShort(), loaded.getAddress().getAddressItems().get(i)
+					.getShort());
+			Assert.assertEquals(data.getAddress().getAddressItems().get(i)
+					.getValue(), loaded.getAddress().getAddressItems().get(i)
+					.getValue());
+		}
 		Assert.assertEquals(data.getCoordinates().getLatitude(), loaded
 				.getCoordinates().getLatitude());
 		Assert.assertEquals(data.getCoordinates().getLongitude(), loaded

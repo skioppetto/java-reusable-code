@@ -11,7 +11,8 @@ public class GooSuggestParameters extends GooBaseParameters {
 	private GooDistance radius;
 	private String allFieldsSearchTerm;
 	private String placeNameSearchTerm;
-	private List<GooPlacesType> types;
+	private List<GooPlacesType> includedTypes;
+	private List<GooPlacesType> excludedTypes;
 
 	public GooCoordinates getCoordinates() {
 		return coordinates;
@@ -46,12 +47,20 @@ public class GooSuggestParameters extends GooBaseParameters {
 	}
 
 	
-	public List<GooPlacesType> getTypes() {
-		return types;
+	public List<GooPlacesType> getIncludedTypes() {
+		return includedTypes;
 	}
 
-	public void setTypes(List<GooPlacesType> types) {
-		this.types = types;
+	public void setIncludedTypes(List<GooPlacesType> types) {
+		this.includedTypes = types;
+	}
+
+	public List<GooPlacesType> getExcludedTypes() {
+		return excludedTypes;
+	}
+
+	public void setExcludedTypes(List<GooPlacesType> excludedTypes) {
+		this.excludedTypes = excludedTypes;
 	}
 
 }

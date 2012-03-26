@@ -6,6 +6,8 @@ import com.service.google.places.model.GooAddress;
 
 public class GooAddressWrapper extends GooAddress {
 
+	private String streetNumber;
+	
 	public GooAddressWrapper(String address, List<GooAddressItemNode> items) {
 		setAddressItems(items);
 		setFormattedAddress(address);
@@ -15,5 +17,15 @@ public class GooAddressWrapper extends GooAddress {
 		
 	}
 
+	public String getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+	
+	
 		
 }

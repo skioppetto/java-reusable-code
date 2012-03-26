@@ -42,29 +42,21 @@ public class GooPlaceRelationsTest {
 		GooAddressItemNode n3 = new GooAddressItemNode(graphDb.createNode());
 		GooAddressItemNode n4 = new GooAddressItemNode(graphDb.createNode());
 		GooAddressItemNode n5 = new GooAddressItemNode(graphDb.createNode());
-		/*
-		 * GooPlacesType.sublocality_level_5, GooPlacesType.sublocality_level_4,
-		 * GooPlacesType.sublocality_level_3, GooPlacesType.sublocality_level_2,
-		 * GooPlacesType.sublocality_level_1, GooPlacesType.sublocality,
-		 * GooPlacesType.locality, GooPlacesType.administrative_area_level_3,
-		 * GooPlacesType.administrative_area_level_2,
-		 * GooPlacesType.administrative_area_level_1, GooPlacesType.country
-		 */
-		n3.setShort("locality");
+		n3.setValue("locality");
 		n3.setTypes(Arrays.asList(new GooPlacesType[] { GooPlacesType.locality,
 				GooPlacesType.political }));
-		n5.setShort("admin1");
+		n5.setValue("admin1");
 		n5.setTypes(Arrays.asList(new GooPlacesType[] {
 				GooPlacesType.administrative_area_level_1,
 				GooPlacesType.political }));
-		n4.setShort("admin2");
+		n4.setValue("admin2");
 		n4.setTypes(Arrays.asList(new GooPlacesType[] {
 				GooPlacesType.administrative_area_level_2,
 				GooPlacesType.political }));
-		n1.setShort("sub1");
+		n1.setValue("sub1");
 		n1.setTypes(Arrays.asList(new GooPlacesType[] {
 				GooPlacesType.sublocality_level_1, GooPlacesType.political }));
-		n2.setShort("sublocality");
+		n2.setValue("sublocality");
 		n2.setTypes(Arrays.asList(new GooPlacesType[] {
 				GooPlacesType.sublocality, GooPlacesType.political }));
 
@@ -101,6 +93,11 @@ public class GooPlaceRelationsTest {
 		Node n3L = graphDb.getNodeById(n3.getUnderlyingNode().getId());
 		Node n4L = graphDb.getNodeById(n4.getUnderlyingNode().getId());
 		Node n5L = graphDb.getNodeById(n5.getUnderlyingNode().getId());
+		System.out.println(n1L + " " + n1L.getProperty("longValue"));
+		System.out.println(n2L + " " + n2L.getProperty("longValue"));
+		System.out.println(n3L + " " + n3L.getProperty("longValue"));
+		System.out.println(n4L + " " + n4L.getProperty("longValue"));
+		System.out.println(n5L + " " + n5L.getProperty("longValue"));
 		testItemContainRelation(n1L, n2L);
 		testItemContainRelation(n2L, n3L);
 		testItemContainRelation(n3L, n4L);
@@ -110,11 +107,13 @@ public class GooPlaceRelationsTest {
 	private void testItemContainRelation(Node n1, Node n2) {
 		Iterable<Relationship> reln1 = n1.getRelationships(
 				GooPlaceRelations.AddressItemRelations.LOCATION_CONTAINS,
-				Direction.OUTGOING);
+				Direction.INCOMING);
 		int count = 0;
 		for (Relationship relationship : reln1) {
 			count++;
-			Assert.assertEquals(n2, relationship.getEndNode());
+			System.out.println(n1.getProperty("longValue") + "<-"
+					+ n2.getProperty("longValue"));
+			Assert.assertEquals(n2, relationship.getStartNode());
 		}
 		Assert.assertEquals(1, count);
 	}

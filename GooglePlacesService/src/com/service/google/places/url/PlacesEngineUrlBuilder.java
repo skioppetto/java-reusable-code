@@ -2,7 +2,10 @@ package com.service.google.places.url;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+
+import scala.actors.threadpool.Arrays;
 
 import com.service.google.places.model.GooPlacesType;
 import com.service.google.places.request.GooBaseParameters;
@@ -45,8 +48,15 @@ public class PlacesEngineUrlBuilder {
 			sb.append("&name=").append(parameters.getPlaceNameSearchTerm());
 		if (parameters.getLanguage() != null)
 			sb.append("&language=").append(parameters.getLanguage().getCode());
-		if (parameters.getTypes() != null && !parameters.getTypes().isEmpty())
-			sb.append("&types=").append(buildTypesChain(parameters.getTypes()));
+		if (parameters.getIncludedTypes() != null
+				&& !parameters.getIncludedTypes().isEmpty()
+				&& parameters.getExcludedTypes() != null)
+			sb.append("&types=").append(
+					buildTypesChain(parameters.getIncludedTypes()));
+		else if (parameters.getExcludedTypes() != null
+				&& !parameters.getExcludedTypes().isEmpty())
+			sb.append("&types=").append(
+					buildTypesDifferenceChain(parameters.getExcludedTypes()));
 		try {
 			return new URL(sb.toString());
 		} catch (MalformedURLException e) {
@@ -95,6 +105,17 @@ public class PlacesEngineUrlBuilder {
 				sb.append("|");
 		}
 		return sb.toString();
+	}
+
+	private static String buildTypesDifferenceChain(
+			List<GooPlacesType> excludedTypes) {
+		@SuppressWarnings("unchecked")
+		List<GooPlacesType> types = new ArrayList<GooPlacesType>(
+				Arrays.asList(GooPlacesType.values()));
+		;
+		for (GooPlacesType t : excludedTypes)
+			types.remove(t);
+		return buildTypesChain(types);
 	}
 
 	public GooOutputType getOutputType() {
