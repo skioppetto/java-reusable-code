@@ -19,7 +19,6 @@ import com.service.google.places.PlacesEngineException;
 import com.service.google.places.dao.GooPlacesDaoImpl;
 import com.service.google.places.dao.IGooPlacesDao;
 import com.service.google.places.dao.PlaceDetailNodeFactory;
-import com.service.google.places.model.GooAddressItem;
 import com.service.google.places.model.GooPlaceDetail;
 import com.service.google.places.model.GooPlaceSuggest;
 import com.service.google.places.model.GooPlaceSuggestItem;
