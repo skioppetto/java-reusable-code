@@ -47,6 +47,7 @@ class TreeNodeServices<X extends AbstractNode> {
 				n.setRight(count++);
 			}
 
+			@SuppressWarnings("unchecked")
 			public void visitDown(AbstractNode child) {
 				NodeContainer<X> n = new NodeContainer<X>((X) child);
 				nodeStack.push(n);
