@@ -8,13 +8,20 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.service.google.places.builder.IPlaceDetailBuilder;
 import com.service.google.places.builder.ResponseBuilderParseException;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({ "classpath:META-INF/GooglePlaceService-context.xml" })
 public class XPathDetailsTest {
 
-	private IPlaceDetailBuilder builder = new XPathPlaceDetailBuilder();
+	@Autowired
+	private IPlaceDetailBuilder builder;
 	private InputStream stream;
 
 	@Before
@@ -123,14 +130,16 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildFormattedPhoneNumber() throws ResponseBuilderParseException {
+	public void buildFormattedPhoneNumber()
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildFormattedPhoneNumber();
 		Assert.assertEquals("0444 286311", id);
 	}
 
 	@Test
-	public void buildInternationalPhoneNumber() throws ResponseBuilderParseException {
+	public void buildInternationalPhoneNumber()
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildInternationalPhoneNumber();
 		Assert.assertEquals("+39 0444 286311", id);
@@ -153,7 +162,8 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildAddressComponentsCount() throws ResponseBuilderParseException {
+	public void buildAddressComponentsCount()
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		int countT = builder.buildAddressComponentsCount();
 		Assert.assertEquals(7, countT);
@@ -176,7 +186,8 @@ public class XPathDetailsTest {
 	}
 
 	@Test
-	public void buildAddressComponentType() throws ResponseBuilderParseException {
+	public void buildAddressComponentType()
+			throws ResponseBuilderParseException {
 		builder.openStream(stream);
 		String id = builder.buildAddressComponentType(2, 0);
 		Assert.assertEquals("locality", id);

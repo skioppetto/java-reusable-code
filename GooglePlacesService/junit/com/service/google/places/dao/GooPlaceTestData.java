@@ -1,6 +1,8 @@
 package com.service.google.places.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import scala.actors.threadpool.Arrays;
 
@@ -30,8 +32,8 @@ class GooPlaceAddressItemTest extends GooAddressItem {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<GooPlacesType> getTypes() {
-		return Arrays.asList(types[idx]);
+	public Set<GooPlacesType> getTypes() {
+		return new HashSet(Arrays.asList(types[idx]));
 	}
 
 	@Override
@@ -40,7 +42,7 @@ class GooPlaceAddressItemTest extends GooAddressItem {
 	}
 
 	@Override
-	public String getShort() {
+	public String getShortValue() {
 		return shorts[idx];
 	}
 
@@ -56,9 +58,9 @@ class GooPlaceAddressTest extends GooAddress {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<GooAddressItem> getAddressItems() {
-		return Arrays.asList(new Object[] { new GooPlaceAddressItemTest(0),
-				new GooPlaceAddressItemTest(1) });
+	public Set<GooAddressItem> getAddressItems() {
+		return new HashSet(Arrays.asList(new Object[] { new GooPlaceAddressItemTest(0),
+				new GooPlaceAddressItemTest(1) }));
 	}
 
 }

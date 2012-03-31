@@ -5,7 +5,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class HTTPHandlerImpl implements IHttpHandler {
 
 	URLConnection connection = null;

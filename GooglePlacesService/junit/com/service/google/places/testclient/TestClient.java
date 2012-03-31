@@ -54,12 +54,6 @@ public class TestClient {
 
 		// TODO:
 	}
-
-	@Before
-	public void init(){
-		engine.setSuggestBuilder( new XPathPlaceSuggestBuilder());
-		engine.setDetailBuilder (new XPathPlaceDetailBuilder());
-	}
 	
 	@Test
 	public void getSuggestionsAndDetailsTest() throws PlacesEngineException {

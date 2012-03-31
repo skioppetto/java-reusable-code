@@ -8,13 +8,20 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.service.google.places.builder.IPlaceSuggestBuilder;
 import com.service.google.places.builder.ResponseBuilderParseException;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({ "classpath:META-INF/GooglePlaceService-context.xml" })
 public class XPathSuggestTest {
 
-	private IPlaceSuggestBuilder builder = new XPathPlaceSuggestBuilder();
+	@Autowired
+	private IPlaceSuggestBuilder builder ;
 	private InputStream stream;
 
 	@Before

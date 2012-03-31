@@ -2,8 +2,15 @@ package com.service.google.places.model;
 
 import java.util.List;
 
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+
+@NodeEntity()
 public class GooPlaceSuggestItem {
 
+	
+	@GraphId private Long nodeId;
 	private String name;
 	private String simplifiedAddress;
 	private List<GooPlacesType> types;
@@ -11,12 +18,14 @@ public class GooPlaceSuggestItem {
 	private Double rating;
 	private String icon;
 	private String reference;
+	@Indexed
 	private String uid;
 
 	public String getName() {
 		return name;
 	}
 
+	
 	public String getSimplifiedAddress() {
 		return simplifiedAddress;
 	}
@@ -81,8 +90,16 @@ public class GooPlaceSuggestItem {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		result = prime * result + ((nodeId == null) ? 0 : nodeId.hashCode());
 		return result;
+	}
+
+	public Long getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(Long nodeId) {
+		this.nodeId = nodeId;
 	}
 
 	@Override
@@ -94,12 +111,13 @@ public class GooPlaceSuggestItem {
 		if (getClass() != obj.getClass())
 			return false;
 		GooPlaceSuggestItem other = (GooPlaceSuggestItem) obj;
-		if (uid == null) {
-			if (other.uid != null)
+		if (nodeId == null) {
+			if (other.nodeId != null)
 				return false;
-		} else if (!uid.equals(other.uid))
+		} else if (!nodeId.equals(other.nodeId))
 			return false;
 		return true;
 	}
 
+	
 }

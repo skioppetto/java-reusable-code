@@ -1,5 +1,9 @@
 package com.service.google.places;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.service.google.places.builder.PlaceDetailFactory;
 import com.service.google.places.dao.IGooPlacesDao;
 import com.service.google.places.model.GooPlaceDetail;
@@ -8,10 +12,16 @@ import com.service.google.places.request.GooDetailParameters;
 import com.service.google.places.request.GooPlaceCachedParameters;
 import com.service.google.places.request.GooSuggestParameters;
 
-public class GooPlacesCachedEngine implements IGooPlaceEngine {
+@Service
+public class GooPlacesCachedEngine implements  IGooPlaceCachedEngine {
 
+	@Autowired
 	private IGooPlacesDao dao;
+	@Autowired
 	private IGooPlaceEngine engine;
+
+	public GooPlacesCachedEngine() {
+	}
 
 	public GooPlacesCachedEngine(IGooPlaceEngine engine, IGooPlacesDao dao) {
 		this.dao = dao;
@@ -32,10 +42,11 @@ public class GooPlacesCachedEngine implements IGooPlaceEngine {
 		return detail;
 	}
 
+	
 	public GooPlaceDetail getDetail(GooDetailParameters parameters)
 			throws PlacesEngineException {
 		GooPlaceDetail detail = engine.getDetail(parameters);
-		getDao().save(detail);
+		dao.save(detail);
 		return detail;
 	}
 
@@ -59,17 +70,6 @@ public class GooPlacesCachedEngine implements IGooPlaceEngine {
 		return engine.getDetailXml(parameters);
 	}
 
-	public void setPlaceDetailFactory(PlaceDetailFactory factory) {
-		engine.setPlaceDetailFactory(factory);
-	}
-
-	public IGooPlacesDao getDao() {
-		return dao;
-	}
-
-	public void setDao(IGooPlacesDao dao) {
-		this.dao = dao;
-	}
 
 	public GooPlaceDetail getByUid(String uid) {
 		return dao.getByUid(uid);

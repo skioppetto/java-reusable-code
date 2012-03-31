@@ -2,7 +2,13 @@ package com.service.google.places.builder;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.service.google.places.model.GooAddress;
 import com.service.google.places.model.GooAddressItem;
@@ -13,12 +19,16 @@ import com.service.google.places.model.GooPlaceSuggestItem;
 import com.service.google.places.model.GooPlacesType;
 import com.service.google.places.model.GooResponseStatus;
 
+@Component
 public class PlacesEngineResultDirector {
 
+	@Autowired
 	private IPlaceSuggestBuilder placeSuggestBuilder;
+	@Autowired
 	private IPlaceDetailBuilder placeDetailBuilder;
-	private PlaceDetailFactory detailFactory = new PlaceDetailFactory();
-	
+	@Autowired
+	private PlaceDetailFactory detailFactory;
+
 	public GooPlaceSuggest parseSuggest(InputStream stream)
 			throws ResponseBuilderParseException {
 
@@ -41,11 +51,12 @@ public class PlacesEngineResultDirector {
 		return suggest;
 	}
 
+	@Transactional
 	public GooPlaceDetail parseDetailPlace(InputStream stream)
 			throws ResponseBuilderParseException {
 		placeDetailBuilder.openStream(stream);
 		String key = placeDetailBuilder.buildId();
-		GooPlaceDetail detail = getDetailFactory().createGooPlaceDetail(key);
+		GooPlaceDetail detail = detailFactory.createGooPlaceDetail(key);
 		GooResponseStatus status = GooResponseStatus.valueOf(placeDetailBuilder
 				.buildStatus());
 		detail.setStatus(status);
@@ -59,14 +70,13 @@ public class PlacesEngineResultDirector {
 		detail.setUrlGoogle(placeDetailBuilder.buildUrlGoolge());
 		detail.setUrlPlace(placeDetailBuilder.buildUrlPlace());
 
-		GooAddress address = getDetailFactory().createGooPlaceAddress();
-		List<GooAddressItem> items = new ArrayList<GooAddressItem>();
+		GooAddress address = detailFactory.createGooPlaceAddress();
+		Set<GooAddressItem> items = new HashSet<GooAddressItem>();
 		for (int i = 0; i < placeDetailBuilder.buildAddressComponentsCount(); i++) {
 			String itemkey = placeDetailBuilder
 					.buildAddressComponentLongValue(i);
-			GooAddressItem item = getDetailFactory().createGooAddressItem(
-					itemkey);
-			item.setTypes(new ArrayList<GooPlacesType>());
+			GooAddressItem item = detailFactory.createGooAddressItem(itemkey);
+			item.setTypes(new HashSet<GooPlacesType>());
 			for (int j = 0; j < placeDetailBuilder
 					.buildAddressComponentTypesCount(i); j++)
 				item.getTypes().add(
@@ -100,30 +110,6 @@ public class PlacesEngineResultDirector {
 		}
 		item.setTypes(types);
 		item.setUid(builder.buildId());
-	}
-
-	public IPlaceSuggestItemBuilder getPlaceSuggestBuilder() {
-		return placeSuggestBuilder;
-	}
-
-	public void setPlaceSuggestBuilder(IPlaceSuggestBuilder placeSuggestBuilder) {
-		this.placeSuggestBuilder = placeSuggestBuilder;
-	}
-
-	public IPlaceDetailBuilder getPlaceDetailBuilder() {
-		return placeDetailBuilder;
-	}
-
-	public void setPlaceDetailBuilder(IPlaceDetailBuilder placeDetailBuilder) {
-		this.placeDetailBuilder = placeDetailBuilder;
-	}
-
-	public PlaceDetailFactory getDetailFactory() {
-		return detailFactory;
-	}
-
-	public void setDetailFactory(PlaceDetailFactory detailFactory) {
-		this.detailFactory = detailFactory;
 	}
 
 }

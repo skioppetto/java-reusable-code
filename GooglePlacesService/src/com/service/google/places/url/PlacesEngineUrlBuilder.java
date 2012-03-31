@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import scala.actors.threadpool.Arrays;
 
 import com.service.google.places.model.GooPlacesType;
@@ -12,6 +14,7 @@ import com.service.google.places.request.GooBaseParameters;
 import com.service.google.places.request.GooDetailParameters;
 import com.service.google.places.request.GooSuggestParameters;
 
+@Component
 public class PlacesEngineUrlBuilder {
 
 	private static String suggestBasePath = "https://maps.googleapis.com/maps/api/place/search/";
@@ -19,8 +22,7 @@ public class PlacesEngineUrlBuilder {
 
 	private GooOutputType outputType;
 
-	public PlacesEngineUrlBuilder(GooOutputType type) {
-		this.setOutputType(type);
+	public PlacesEngineUrlBuilder() {
 	}
 
 	public URL buildPlacesSuggestUrl(GooSuggestParameters parameters)
@@ -50,7 +52,8 @@ public class PlacesEngineUrlBuilder {
 			sb.append("&language=").append(parameters.getLanguage().getCode());
 		if (parameters.getIncludedTypes() != null
 				&& !parameters.getIncludedTypes().isEmpty()
-				&& parameters.getExcludedTypes() != null)
+				&& (parameters.getExcludedTypes() == null || parameters
+						.getExcludedTypes().isEmpty()))
 			sb.append("&types=").append(
 					buildTypesChain(parameters.getIncludedTypes()));
 		else if (parameters.getExcludedTypes() != null

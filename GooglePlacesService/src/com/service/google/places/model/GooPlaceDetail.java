@@ -1,17 +1,19 @@
 package com.service.google.places.model;
 
-public class GooPlaceDetail extends GooPlaceSuggestItem
-{
+import java.util.Set;
+
+import org.springframework.data.neo4j.annotation.RelatedTo;
+
+public class GooPlaceDetail extends GooPlaceSuggestItem {
 
 	private GooResponseStatus status;
-	private GooAddress address;
 	private String formattedPhoneNumber;
 	private String internationalPhoneNumber;
 	private String urlPlace;
 	private String urlGoogle;
+	private String formattedAddress;
+	@RelatedTo(type = "LOCATED") private Set<GooAddressItem> items;
 
-	
-	
 	public GooPlaceDetail() {
 		super();
 	}
@@ -25,7 +27,10 @@ public class GooPlaceDetail extends GooPlaceSuggestItem
 	}
 
 	public GooAddress getAddress() {
-		return address;
+		GooAddress ad = new GooAddress();
+		ad.setFormattedAddress(getFormattedAddress());
+		ad.setAddressItems(getItems());
+		return ad;
 	}
 
 	public String getInternationalPhoneNumber() {
@@ -40,12 +45,23 @@ public class GooPlaceDetail extends GooPlaceSuggestItem
 		return urlGoogle;
 	}
 
+	public String getFormattedAddress() {
+		return formattedAddress;
+	}
+
+	
+	public Set<GooAddressItem> getItems() {
+		return items;
+	}
+
 	public void setStatus(GooResponseStatus status) {
 		this.status = status;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setAddress(GooAddress address) {
-		this.address = address;
+		setFormattedAddress(address.getFormattedAddress());
+		setItems((Set<GooAddressItem>) address.getAddressItems());
 	}
 
 	public void setFormattedPhoneNumber(String formattedPhoneNumber) {
@@ -62,6 +78,14 @@ public class GooPlaceDetail extends GooPlaceSuggestItem
 
 	public void setUrlGoogle(String urlGoogle) {
 		this.urlGoogle = urlGoogle;
+	}
+
+	public void setFormattedAddress(String formattedAddress) {
+		this.formattedAddress = formattedAddress;
+	}
+
+	public void setItems(Set<GooAddressItem> items) {
+		this.items = items;
 	}
 
 }

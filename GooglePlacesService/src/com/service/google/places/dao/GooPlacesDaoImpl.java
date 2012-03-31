@@ -1,42 +1,70 @@
 package com.service.google.places.dao;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import scala.actors.threadpool.Arrays;
+
+import com.service.google.places.model.GooAddressItem;
+import com.service.google.places.model.PoliticalRelashionship;
+import com.service.google.places.model.PoliticalRelashionshipTree;
 import com.service.google.places.model.GooPlaceDetail;
+import com.service.google.places.repositories.GooAddressItemRepository;
+import com.service.google.places.repositories.PlaceDetailRepository;
+import com.service.google.places.repositories.PoliticalRelashionshipRepository;
 
+@Component
 public class GooPlacesDaoImpl implements IGooPlacesDao {
 
-	private GraphDatabaseService graphDb;
+	@Autowired
+	private PlaceDetailRepository placeRepo;
+	@Autowired
+	private GooAddressItemRepository itemRepo;
+	@Autowired
+	private PoliticalRelashionshipRepository politicalRepo;
 
-	public GooPlacesDaoImpl(GraphDatabaseService graphDb) {
-		this.graphDb = graphDb;
-	}
+	final static List<?> treeList = Arrays
+			.asList(PoliticalRelashionshipTree.tree);
 
 	public void save(GooPlaceDetail detail) {
-		GooPlaceIndexes.getInstance().addGooPlaceIndex(
-				((GooPlaceNode) detail).getUnderlyingNode());
-		GraphDbTxManager.getInstance().commiTx(graphDb);
+		List<GooAddressItem> treeItems = new ArrayList<GooAddressItem>();
+		for (GooAddressItem gai : detail.getItems())
+			if (isTreeElement(gai))
+				treeItems.add(gai);
+		Collections.sort(treeItems, new Comparator<GooAddressItem>() {
+			public int compare(GooAddressItem o1, GooAddressItem o2) {
+				return treeList.indexOf(o1.getTreeType())
+						- treeList.indexOf(o2.getTreeType());
+			}
+		});
+
+		for (int i = 0; i < treeItems.size() - 1; i++)
+			if (!treeItems.get(i).getTypes().contains(treeItems.get(i + 1))) {
+				PoliticalRelashionship rel = itemRepo.save(treeItems.get(i))
+						.parentOf(itemRepo.save(treeItems.get(i + 1)),
+								treeItems.get(i).getTreeType());
+				politicalRepo.save(rel);
+
+			}
+		placeRepo.save(detail);
+	}
+
+	private boolean isTreeElement(GooAddressItem gai) {
+		for (int i = 0; i < PoliticalRelashionshipTree.tree.length; i++)
+			if (gai.getTypes().contains(PoliticalRelashionshipTree.tree[i])) {
+				gai.setTreeType(PoliticalRelashionshipTree.tree[i]);
+				return true;
+			}
+		return false;
 	}
 
 	public GooPlaceDetail getByUid(String uid) {
-		GraphDbTxManager.getInstance().beginOrAppendToTx(graphDb);
-		Node node = GooPlaceIndexes.getInstance().findGooPlaceNode(uid,
-				graphDb);
-		GooPlaceNode retVal = null;
-		if (node != null) {
-			retVal = new GooPlaceNode(node);
-		}
-		GraphDbTxManager.getInstance().commiTx(graphDb);
-		return retVal;
-	}
-
-	public GraphDatabaseService getGraphDb() {
-		return graphDb;
-	}
-
-	public void setGraphDb(GraphDatabaseService graphDb) {
-		this.graphDb = graphDb;
+		return placeRepo.findByPropertyValue("uid", uid);
 	}
 
 }

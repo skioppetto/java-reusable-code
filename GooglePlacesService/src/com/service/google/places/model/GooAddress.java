@@ -1,11 +1,11 @@
 package com.service.google.places.model;
 
-import java.util.List;
+import java.util.Set;
 
 public class GooAddress {
 
 	private String formattedAddress;
-	private List<? extends GooAddressItem> addressItems;
+	private Set<? extends GooAddressItem> addressItems;
 
 	public  GooAddress() {
 	}
@@ -19,7 +19,7 @@ public class GooAddress {
 	 * many others
 	 * @return
 	 */
-	public List<? extends GooAddressItem> getAddressItems() {
+	public Set<? extends GooAddressItem> getAddressItems() {
 		return addressItems;
 	}
 
@@ -27,7 +27,7 @@ public class GooAddress {
 		this.formattedAddress = formattedAddress;
 	}
 
-	public  void setAddressItems(List<? extends GooAddressItem> addressItems) {
+	public  void setAddressItems(Set<? extends GooAddressItem> addressItems) {
 		this.addressItems = addressItems;
 	}
 

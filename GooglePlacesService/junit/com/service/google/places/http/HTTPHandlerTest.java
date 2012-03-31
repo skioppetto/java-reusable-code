@@ -7,8 +7,13 @@ import java.net.URL;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({ "classpath:META-INF/GooglePlaceService-context.xml" })
 public class HTTPHandlerTest {
 
 	private String correctUrl = "https://maps.googleapis.com/maps/api/place/search/xml"
@@ -16,7 +21,8 @@ public class HTTPHandlerTest {
 			+ "&location=-33.8670522,151.1957362"
 			+ "&radius=1000"
 			+ "&sensor=false";
-	IHttpHandler testing = new HTTPHandlerImpl();
+	@Autowired
+	IHttpHandler testing;
 
 	@Test
 	public void testGetStream() throws IOException {

@@ -4,6 +4,6 @@ import com.service.google.places.model.GooCoordinates;
 
 public interface MyLocation {
 
-	public static GooCoordinates location = new GooCoordinates(-33.8670522,
-			151.1957362);
+	public static GooCoordinates location = new GooCoordinates( 45.54863380,
+			11.53961120);
 }

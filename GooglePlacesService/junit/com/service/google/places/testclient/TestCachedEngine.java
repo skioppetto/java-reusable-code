@@ -5,21 +5,16 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.kernel.EmbeddedGraphDatabase;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import scala.actors.threadpool.Arrays;
 
-import com.service.google.places.GooPlacesCachedEngine;
-import com.service.google.places.GooPlacesEngine;
+import com.service.google.places.IGooPlaceCachedEngine;
 import com.service.google.places.PlacesEngineException;
-import com.service.google.places.dao.GooPlacesDaoImpl;
-import com.service.google.places.dao.IGooPlacesDao;
-import com.service.google.places.dao.PlaceDetailNodeFactory;
-import com.service.google.places.model.GooAddressItem;
 import com.service.google.places.model.GooPlaceDetail;
 import com.service.google.places.model.GooPlaceSuggest;
 import com.service.google.places.model.GooPlaceSuggestItem;
@@ -27,35 +22,19 @@ import com.service.google.places.model.GooPlacesType;
 import com.service.google.places.model.GooResponseStatus;
 import com.service.google.places.model.MyApplicationKey;
 import com.service.google.places.model.MyLocation;
-import com.service.google.places.parser.XPathPlaceDetailBuilder;
-import com.service.google.places.parser.XPathPlaceSuggestBuilder;
 import com.service.google.places.request.GooDistance;
 import com.service.google.places.request.GooDistance.Unit;
 import com.service.google.places.request.GooPlaceCachedParameters;
 import com.service.google.places.request.GooSuggestParameters;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+// @ApplicationContext will be loaded from
+// "classpath:/com/example/MyTest-context.xml"
+@ContextConfiguration
 public class TestCachedEngine {
 
-	GooPlacesCachedEngine cachedEngine;
-	private GraphDatabaseService db;
-
-	@Before
-	public void initBeans() {
-		GooPlacesEngine engine = new GooPlacesEngine();
-		GraphDatabaseService gDb = new EmbeddedGraphDatabase("test-db");
-		db = gDb;
-		IGooPlacesDao dao = new GooPlacesDaoImpl(db);
-		engine.setPlaceDetailFactory(new PlaceDetailNodeFactory(db));
-		engine.setSuggestBuilder(new XPathPlaceSuggestBuilder());
-		engine.setDetailBuilder(new XPathPlaceDetailBuilder());
-		cachedEngine = new GooPlacesCachedEngine(engine, dao);
-
-	}
-
-	@After
-	public void closeDb() {
-		db.shutdown();
-	}
+	@Autowired
+	IGooPlaceCachedEngine cachedEngine;
 
 	static Set<String> lookUpUids;
 
@@ -86,16 +65,4 @@ public class TestCachedEngine {
 
 		}
 	}
-
-//	@Test
-//	public void reconnectAndLookUpIndexes() {
-//		for (String uid : lookUpUids) {
-//			GooPlaceDetail val = cachedEngine.getByUid(uid);
-//			for (GooAddressItem n : val.getAddress().getAddressItems()) {
-//
-//			}
-//			Assert.assertNotNull(val);
-//		}
-//	}
-
 }

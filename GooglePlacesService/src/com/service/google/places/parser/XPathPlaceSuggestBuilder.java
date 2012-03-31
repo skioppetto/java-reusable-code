@@ -3,8 +3,11 @@ package com.service.google.places.parser;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.springframework.stereotype.Component;
+
 import com.service.google.places.builder.IPlaceSuggestBuilder;
 
+@Component
 public class XPathPlaceSuggestBuilder extends XPathPlaceBaseBuilder implements
 		IPlaceSuggestBuilder {
 

@@ -9,11 +9,10 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
 
-import com.service.google.places.builder.IPlaceDetailBuilder;
-import com.service.google.places.builder.IPlaceSuggestBuilder;
-import com.service.google.places.builder.PlaceDetailFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.service.google.places.builder.PlacesEngineResultDirector;
-import com.service.google.places.http.HTTPHandlerImpl;
 import com.service.google.places.http.IHttpHandler;
 import com.service.google.places.model.GooPlaceDetail;
 import com.service.google.places.model.GooPlaceSuggest;
@@ -22,12 +21,15 @@ import com.service.google.places.request.GooSuggestParameters;
 import com.service.google.places.url.GooOutputType;
 import com.service.google.places.url.PlacesEngineUrlBuilder;
 
+@Service
 public class GooPlacesEngine implements IGooPlaceEngine {
 
-	private PlacesEngineUrlBuilder urlBuilder = new PlacesEngineUrlBuilder(
-			GooOutputType.xml);
-	private IHttpHandler httpHandler = new HTTPHandlerImpl();
-	private PlacesEngineResultDirector parser = new PlacesEngineResultDirector();
+	@Autowired
+	private PlacesEngineUrlBuilder urlBuilder ;
+	@Autowired
+	private IHttpHandler httpHandler ;
+	@Autowired
+	private PlacesEngineResultDirector parser ;
 
 	public GooPlaceSuggest suggestPlaces(GooSuggestParameters parameters)
 			throws PlacesEngineException {
@@ -56,7 +58,6 @@ public class GooPlacesEngine implements IGooPlaceEngine {
 		}
 	}
 
-	
 	public String getDetailJson(GooDetailParameters parameters)
 			throws PlacesEngineException {
 		urlBuilder.setOutputType(GooOutputType.json);
@@ -79,7 +80,6 @@ public class GooPlacesEngine implements IGooPlaceEngine {
 		}
 	}
 
-
 	public String getDetailXml(GooDetailParameters parameters)
 			throws PlacesEngineException {
 		urlBuilder.setOutputType(GooOutputType.xml);
@@ -91,21 +91,7 @@ public class GooPlacesEngine implements IGooPlaceEngine {
 		}
 	}
 
-	public void setDetailBuilder(IPlaceDetailBuilder builder) {
-		parser.setPlaceDetailBuilder(builder);
-
-	}
-
-	public void setSuggestBuilder(IPlaceSuggestBuilder builder) {
-		parser.setPlaceSuggestBuilder(builder);
-
-	}
-
-	public void setPlaceDetailFactory(PlaceDetailFactory factory) {
-		parser.setDetailFactory(factory);
-	}
-
-	 String convertStreamToString(InputStream is) throws IOException {
+	private String convertStreamToString(InputStream is) throws IOException {
 		/*
 		 * To convert the InputStream to String we use the Reader.read(char[]
 		 * buffer) method. We iterate until the Reader return -1 which means
